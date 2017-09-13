@@ -32,7 +32,9 @@ namespace SafeHaven.MobileAppService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<SafeHavenContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("SAFEHAVEN_API_DB")));
+			//string path = Environment.GetEnvironmentVariable("SAFEHAVENDB2");
+			//var connectionString = $"filename={path}";
+            services.AddDbContext<SafeHavenContext>(options => options.UseSqlServer("/Users/bsg/workspace/personalproj/SafeHaven/MobileAppService/Data/SafeHaven.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +44,8 @@ namespace SafeHaven.MobileAppService
             loggerFactory.AddDebug();
 
             app.UseMvc();
-        }
+			DbInitializer.Initialize(app.ApplicationServices);
+
+		}
     }
 }
