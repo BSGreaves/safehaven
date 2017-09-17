@@ -10,8 +10,6 @@ namespace SafeHaven.MobileAppService.Models
     [Key]
     public int DocumentID { get; set; }
     [Required]
-    [DataType(DataType.Date)]
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DateCreated { get; set; }
     [Required]
     public string Title { get; set; }
