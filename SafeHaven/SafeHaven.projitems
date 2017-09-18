@@ -9,7 +9,6 @@
     <Import_RootNamespace>SafeHaven</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -39,6 +38,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavBarViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessRight.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessRightResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentTypeResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ImageResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\JsonResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SingleDocumentResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SingleUserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Keys.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -71,5 +85,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

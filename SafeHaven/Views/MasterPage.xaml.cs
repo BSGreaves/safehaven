@@ -10,7 +10,8 @@ namespace SafeHaven.Views
 		public MasterPage()
 		{
 			InitializeComponent();
-			navbar.NavBarList.ItemSelected += OnItemSelected;
+			navBarPage.NavBarList.ItemSelected += OnItemSelected;
+
 		}
 
 		void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -19,7 +20,7 @@ namespace SafeHaven.Views
 			if (item != null)
 			{
 				Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
-				navbar.NavBarList.SelectedItem = null;
+				navBarPage.NavBarList.SelectedItem = null;
 				IsPresented = false;
 			}
 		}

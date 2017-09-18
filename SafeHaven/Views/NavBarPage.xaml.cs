@@ -8,11 +8,12 @@ namespace SafeHaven.Views
     public partial class NavBarPage : ContentPage
     {
 
-        public ListView NavBarList { get { return navbarlist; } }
+         public ListView NavBarList { get { return navbarlist; } }
 
 		public NavBarPage()
         {
 			InitializeComponent();
+			Title = "Menu";
 
             var NavBarItems = new List<NavBarItem>
             {

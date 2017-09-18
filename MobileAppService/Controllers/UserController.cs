@@ -22,99 +22,112 @@ namespace SafeHaven.Controllers
 
         // GET ALL
         [HttpGet]
-        public IActionResult Get()
+        public async Task<UserResponse> Get()
         {
-            var users = _context.User.ToList();  
-            if (users == null)
-            {
-                return NotFound();
-            }
-            return Ok(users);  
+			UserResponse response = new UserResponse();
+			var users = await _context.User.ToListAsync();
+			if (users == null)
+			{
+				response.Success = false;
+				response.Message = "No Users found.";
+				return response;
+			}
+            response.Success = true;
+            response.Message = "Users found.";
+            response.Users = users;
+            return response;
         }
 
         // GET SINGLE
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id)
+        public async Task<SingleUserResponse> Get([FromRoute] int id)
         {
-            // If you request anything other than an Id you will get a return of BadRequest. 
+            SingleUserResponse response = new SingleUserResponse();
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                response.Success = false;
+                response.Message = "Bad Request.";
+                return response;
             }
-            try
+            var user = await _context.User.SingleOrDefaultAsync(x => x.UserID == id);
+            if (user == null)
             {
-                var user = _context.User.SingleOrDefault(x => x.UserID == id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                return Ok(user);
+				response.Success = false;
+				response.Message = "User not found.";
+				return response;
             }
-            //if the try statement fails for some reason, will return error of what happened. 
-            catch (System.InvalidOperationException ex)
-            {
-                return NotFound(ex);
-            }
+			response.Success = true;
+			response.Message = "User found.";
+            response.User = user;
+			return response;
         }
 
         // POST
         [HttpPost]
-         public IActionResult Post([FromBody] User newUser)
+         public async Task<JsonResponse> Post([FromBody] User newUser)
          {
+            JsonResponse response = new JsonResponse();
+            response.Success = false;
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(ModelState);
+                response.Message = "Invalid credentials. Please enter a valid email and password.";
+                return response;
 			}
             if (UserExists(newUser.Email))
-            { 
-                return BadRequest(ModelState);
-            }
+            {
+                response.Message = "This email address has already been registered. Please log in with this email or use a new email address.";
+				return response;
+			}
 
 			_context.User.Add(newUser);
 			try
 			{
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 			}
 			catch (DbUpdateException)
 			{
-				return StatusCode(500);
+				response.Message = "We encountered a database error. Please try again later or contact our team for assistance.";
+				return response;
 			}
-			return Ok();
+			response.Success = true;
+			response.Message = "Registration successful!";
+            return response;
          }
 
 		// UPDATE
 		[HttpPut("{id}")]
-		public IActionResult Put(int id, [FromBody] User user)
+		public async Task<JsonResponse> Put(int id, [FromBody] User user)
 		{
+			JsonResponse response = new JsonResponse();
+			response.Success = false;
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(ModelState);
+				response.Message = "Invalid data. Please try again.";
+				return response;
 			}
-
 			if (id != user.UserID)
 			{
-				return BadRequest();
+				response.Message = "Invalid update. Please try again.";
+				return response;
 			}
-
-			_context.User.Update(user);
-
+			_context.Update(user);
 			try
 			{
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 			}
-			catch (DbUpdateConcurrencyException)
+			catch
 			{
-				return StatusCode(500);
+				response.Message = "We encountered a database error. Please try again later or contact our team for assistance.";
+				return response;
 			}
-
-			return Ok();
+			response.Success = true;
+			response.Message = "Update successful";
+			return response;
 		}
 
 		private bool UserExists(string email)
 		{
 			return _context.User.Count(e => e.Email == email) > 0;
 		}
-
-
 	}
 }

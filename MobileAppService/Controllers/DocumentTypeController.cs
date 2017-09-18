@@ -22,30 +22,20 @@ namespace SafeHaven.Controllers
         }
         // GET ALL
         [HttpGet]
-        public IActionResult Get()
+        public async Task<DocumentTypeResponse> Get()
         {
-            IQueryable<DocumentType> DocumentTypes = from DocumentType in _context.DocumentType select DocumentType;
-            if (DocumentTypes == null)
+            DocumentTypeResponse response = new DocumentTypeResponse();
+            List<DocumentType> documenttypes = await _context.DocumentType.ToListAsync();
+            if (documenttypes == null)
             {
-                return NotFound();
+                response.Success = false;
+                response.Message = "No items found.";
+                return response;
             }
-            return Ok(DocumentTypes);
+            response.Success = true;
+			response.Message = "Items found.";
+            response.DocumentTypes = documenttypes;
+			return response;
         }
-
-        // GET Single 
-        [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-			DocumentType documentType = _context.DocumentType.SingleOrDefault(m => m.DocumentTypeID == id);
-            if (documentType == null)
-            {
-                return NotFound();
-            }
-			return Ok(documentType);
-		}
     }
 }

@@ -10,6 +10,7 @@ namespace SafeHaven.Views
         public NewDocumentPage()
         {
             InitializeComponent();
+            Title = "New Document";
         }
     }
 }

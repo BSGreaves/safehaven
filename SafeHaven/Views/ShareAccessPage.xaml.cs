@@ -10,6 +10,8 @@ namespace SafeHaven.Views
         public ShareAccessPage()
         {
             InitializeComponent();
+            Title = "Share and Access";
+
         }
     }
 }

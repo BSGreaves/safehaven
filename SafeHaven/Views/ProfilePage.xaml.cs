@@ -10,6 +10,7 @@ namespace SafeHaven.Views
         public ProfilePage()
         {
             InitializeComponent();
+            Title = "My Profile";
         }
     }
 }

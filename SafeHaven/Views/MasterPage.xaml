@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage
-    xmlns:local="clr-namespace:SafeHaven.Views"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="SafeHaven.Views.MasterPage">
+    x:Class="SafeHaven.Views.MasterPage"
+    xmlns:different="clr-namespace:SafeHaven.Views"
+>
     <MasterDetailPage.Master>
-        <local:NavBarPage x:Name="navbar" />
+        <different:NavBarPage x:Name="navBarPage" />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <ContentPage>
+        <NavigationPage>
             <x:Arguments>
-                <local:DocumentListPage />
+                <different:HomePage />
             </x:Arguments>
-        </ContentPage>
+        </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
