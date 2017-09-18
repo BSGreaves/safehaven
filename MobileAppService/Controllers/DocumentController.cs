@@ -33,7 +33,7 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
-			List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
+            List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
 			if (documents == null)
 			{
 				response.Success = false;

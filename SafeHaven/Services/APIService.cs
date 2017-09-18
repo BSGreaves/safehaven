@@ -22,7 +22,7 @@ namespace SafeHaven.Services
 		// GET a list of documents for a userID
 		public async Task<DocumentResponse> GetDocuments(int userID)
 		{
-			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/getall/" + userID, string.Empty));
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/document/getall/" + userID, string.Empty));
 			try
 			{
 				HttpResponseMessage response = await _client.GetAsync(uri);

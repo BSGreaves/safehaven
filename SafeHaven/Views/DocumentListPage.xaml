@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage Padding="0, 20, 0, 0" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.DocumentListPage">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="new.png" Text="New" Activated="NewDocument"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <!--<SearchBar Placeholder="Search"  TextChanged="Handle_TextChanged" />-->
+        <ListView x:Name="DocumentList" HasUnevenRows="True" SeparatorVisibility="None" >
+            <ListView.ItemTemplate> 
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding DocumentType.Title}" />                
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- Add SeperatorVisibility="None" to get rid of the lines between -->
+        <!-- Add SeperatorColor="Blue" to change color -->
+    </StackLayout>
 </ContentPage>

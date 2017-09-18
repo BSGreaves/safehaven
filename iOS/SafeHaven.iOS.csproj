@@ -126,6 +126,12 @@
     <BundleResource Include="Resources\register.png" />
     <BundleResource Include="Resources\register%402x.png" />
     <BundleResource Include="Resources\register%403x.png" />
+    <BundleResource Include="Resources\newdocument%403x.png" />
+    <BundleResource Include="Resources\newdocument%402x.png" />
+    <BundleResource Include="Resources\newdocument.png" />
+    <BundleResource Include="Resources\new.png" />
+    <BundleResource Include="Resources\new%402x.png" />
+    <BundleResource Include="Resources\new%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
