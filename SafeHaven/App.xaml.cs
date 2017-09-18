@@ -11,7 +11,7 @@ namespace SafeHaven
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new MasterPage();
         }
     }
 }
