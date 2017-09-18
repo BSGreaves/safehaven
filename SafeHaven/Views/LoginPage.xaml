@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.LoginPage">
-    <ContentPage Title="Login">
+    <ContentPage Title="Login" Icon="login.png">
         <StackLayout Spacing="20" Padding="20"
                  VerticalOptions="Center">
             <Label Text="SafeHaven" HorizontalTextAlignment="Center"
-                   FontSize="26" TextColor="#00DE0E" />
+                   FontSize="26" TextColor="#84000f" />
             <Label Text="Email" HorizontalTextAlignment="Center" />
             <Entry x:Name="userLogin"/>
             <Label Text="Password" HorizontalTextAlignment="Center" />
             <Entry x:Name="passLogin"
                    IsPassword="True" />
             <Button Text="Login" TextColor="White"
-                    BackgroundColor="#00DE0E" />
+                    BackgroundColor="#84000f" />
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Register">
+    <ContentPage Title="Register" Icon="register.png">
         <StackLayout Spacing="20" Padding="20"
                  VerticalOptions="Center">
             <Label Text="SafeHaven" HorizontalTextAlignment="Center"
-                   FontSize="26" TextColor="#00DE0E" />
+                   FontSize="26" TextColor="#84000f" />
             <Label Text="Email" HorizontalTextAlignment="Center" />
             <Entry x:Name="userRegister"/>
             <Label Text="Password" HorizontalTextAlignment="Center" />
             <Entry x:Name="passRegister"
                    IsPassword="True" />
-            <Button Text="Login" TextColor="White"
-                    BackgroundColor="#00DE0E" />
+            <Button Text="Register" TextColor="White"
+                    BackgroundColor="#84000f" />
         </StackLayout>
-       
     </ContentPage>
 </TabbedPage>

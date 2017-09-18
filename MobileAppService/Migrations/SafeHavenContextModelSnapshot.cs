@@ -110,6 +110,8 @@ namespace SafeHaven.MobileAppService.Migrations
 
                     b.Property<string>("LastName");
 
+                    b.Property<string>("Password");
+
                     b.Property<string>("State");
 
                     b.Property<string>("Street");

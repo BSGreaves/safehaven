@@ -21,67 +21,113 @@ namespace SafeHaven.Controllers
 			_context = ctx;
 		}
 
+        // GET all where user is grantor
         [HttpGet("{userid}")]
-		public IActionResult GetWhereGranter([FromRoute] int userid)
+		public async Task<AccessRightResponse> GetWhereGrantor([FromRoute] int userid)
 		{
-            IQueryable<AccessRight> accessrights = _context.AccessRight.Where(x => x.GrantorID == userid).Include("Accessor");
-
+			AccessRightResponse response = new AccessRightResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
+            List<AccessRight> accessrights = await _context.AccessRight.Where(x => x.GrantorID == userid).Include("Accessor").ToListAsync();
 			if (accessrights == null)
 			{
-				return NotFound();
+                response.Success = false;
+				response.Message = "No items found.";
+				return response;
 			}
-
-            return Ok(accessrights);
+            response.AccessRights = accessrights;
+            response.Success = true;
+            response.Message = "Items found.";
+            return response;
 		}
 
-        [HttpGet("{userid}")]
-        public IActionResult GetWhereAccessor([FromRoute] int userid)
-        {
-            IQueryable<AccessRight> accessrights = _context.AccessRight.Where(x => x.GrantorID == userid).Include("Grantor");
+		// GET all where user is grantor
+		[HttpGet("{userid}")]
+		public async Task<AccessRightResponse> GetWhereAccessor([FromRoute] int userid)
+		{
+			AccessRightResponse response = new AccessRightResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
+			List<AccessRight> accessrights = await _context.AccessRight.Where(x => x.AccessorID == userid).Include("Grantor").ToListAsync();
+			if (accessrights == null)
+			{
+				response.Success = false;
+				response.Message = "No items found.";
+				return response;
+			}
+			response.AccessRights = accessrights;
+			response.Success = true;
+			response.Message = "Items found.";
+			return response;
+		}
 
-            if (accessrights == null)
-            {
-                return NotFound();
-            }
-            return Ok(accessrights);
-        }
-
+        // POST
         [HttpPost]
-        public IActionResult Post([FromBody] AccessRight accessright)
+        public async Task<JsonResponse> Post([FromBody] AccessRight accessright)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            JsonResponse response = new JsonResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
             _context.AccessRight.Add(accessright);
             try
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException)
+            catch
             {
-                throw;
+                response.Success = false;
+                response.Message = "There was a a database error. Please try again.";
+                return response;
             }
-            return Ok();
+            response.Success = true;
+            response.Message = "Post successful.";
+            return response;
         }
 
+        // DELETE
 		[HttpDelete("{accessrightid}")]
-		public IActionResult Delete(int accessrightid)
+		public async Task<JsonResponse> Delete(int accessrightid)
 		{
+            JsonResponse response = new JsonResponse();
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(ModelState);
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
 			}
-
-			AccessRight accessright = _context.AccessRight.SingleOrDefault(x => x.AccessRightID == accessrightid);
+			AccessRight accessright = await _context.AccessRight.SingleOrDefaultAsync(x => x.AccessRightID == accessrightid);
 			if (accessright == null)
 			{
-				return NotFound();
+                response.Success = false;
+                response.Message = "There was an error deleting this record. Please try again.";
+                return response;
 			}
-
 			_context.AccessRight.Remove(accessright);
-            _context.SaveChanges();
-			return Ok();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+				response.Success = false;
+				response.Message = "There was an error deleting this record. Please try again.";
+				return response;
+            }
+			response.Success = true;
+			response.Message = "Delete successful.";
+            return response;
 		}
 	}
 }

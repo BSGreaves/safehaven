@@ -22,109 +22,144 @@ namespace SafeHaven.Controllers
             _context = ctx;
         }
 
-        // GET ALL
-        [HttpGet("{userid}")]
-        public IActionResult GetAll(int userid)
-        {
-            IQueryable<Document> documents = _context.Document.Where(x => x.UserID == userid);
-
-            if (documents == null)
-            {
-                return NotFound();
-            }
-            return Ok(documents);
-        }
-
-        // GET SINGLE
-        [HttpGet("{docid}")]
-        public IActionResult GetSingle([FromRoute] int docid)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-			Document document = _context.Document.Include("DocumentImages").SingleOrDefault(m => m.DocumentID == docid);
-            if (document == null)
-            {
-                return NotFound();
-            }
-            return Ok(document);
-		}
-
-        // POST url/Order
-        [HttpPost]
-        public IActionResult Post([FromBody] Document document)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            _context.Document.Add(document); 
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                return StatusCode(500);
-            }
-			return Ok();
-		}
-
-        // UPDATE
-        [HttpPut("{id}")]
-        public IActionResult Put (int id, [FromBody] Document document)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != document.DocumentID)
-            {
-                return BadRequest();
-            }
-
-            _context.Document.Update(document);
-
-            try
-            {
-                _context.SaveChanges();
+        // GET ALL based on a userID
+		[HttpGet("{userid}")]
+		public async Task<DocumentResponse> GetAll([FromRoute] int userid)
+		{
+			DocumentResponse response = new DocumentResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
 			}
-            catch (DbUpdateConcurrencyException)
-            {
-                return StatusCode(500);
-            }
+			List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
+			if (documents == null)
+			{
+				response.Success = false;
+				response.Message = "No items found.";
+				return response;
+			}
+			response.Documents = documents;
+			response.Success = true;
+			response.Message = "Items found.";
+			return response;
+		}
 
-            return Ok();
-        }
-
-        // DELETE
-        [HttpDelete("{docid}")]
-        public IActionResult Delete(int docid)
+        // GET Single based on userID and include images
+        [HttpGet("{docid}")]
+        public async Task<SingleDocumentResponse> GetSingle([FromRoute] int docid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+			SingleDocumentResponse response = new SingleDocumentResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
+			var document = await _context.Document.Include("DocumentImages").SingleOrDefaultAsync(m => m.DocumentID == docid);
+			if (document == null)
+			{
+				response.Success = false;
+				response.Message = "Item not found.";
+				return response;
+			}
+            response.Document = document;
+			response.Success = true;
+			response.Message = "Item found.";
+			return response;
+		}
 
-            Document document = _context.Document.SingleOrDefault(x => x.DocumentID == docid);
-            if (document == null)
-            {
-                return NotFound();
-            }
+        // POST
+		[HttpPost]
+		public async Task<JsonResponse> Post([FromBody] Document document)
+		{
+			JsonResponse response = new JsonResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
+			_context.Document.Add(document);
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException)
+			{
+				response.Success = false;
+				response.Message = "There was a a database error. Please try again.";
+				return response;
+			}
+			response.Success = true;
+			response.Message = "Post successful.";
+			return response;
+		}
 
-            _context.Document.Remove(document);
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return StatusCode(500);
-            }
+		// UPDATE
+		[HttpPut("{docid}")]
+		public async Task<JsonResponse> Put(int docid, [FromBody] Document document)
+		{
+			JsonResponse response = new JsonResponse();
+			response.Success = false;
+			if (!ModelState.IsValid)
+			{
+				response.Message = "Bad Request.";
+				return response;
+			}
+			if (docid != document.UserID)
+			{
+				response.Message = "Invalid update. Please try again.";
+				return response;
+			}
+			_context.Update(document);
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException)
+			{
+				response.Message = "We encountered a database error. Please try again later or contact our team for assistance.";
+				return response;
+			}
+			response.Success = true;
+			response.Message = "Update successful";
+			return response;
+		}
 
-            return Ok();
-        }
+		// DELETE
+		[HttpDelete("{docid}")]
+		public async Task<JsonResponse> Delete(int docid)
+		{
+			JsonResponse response = new JsonResponse();
+			if (!ModelState.IsValid)
+			{
+				response.Success = false;
+				response.Message = "Bad Request.";
+				return response;
+			}
+			var document = _context.Document.SingleOrDefault(x => x.DocumentID == docid);
+			if (document == null)
+			{
+				response.Success = false;
+				response.Message = "There was an error deleting this document. Please try again.";
+				return response;
+			}
+			_context.Document.Remove(document);
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch
+			{
+				response.Success = false;
+				response.Message = "There was an error deleting this document. Please try again.";
+				return response;
+			}
+			response.Success = true;
+			response.Message = "Delete successful.";
+			return response;
+		}
     }
 }

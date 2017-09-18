@@ -9,7 +9,6 @@
     <Import_RootNamespace>SafeHaven</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -19,6 +18,41 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\APIService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NavBarPage.xaml.cs">
+      <DependentUpon>NavBarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavBarItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DocumentListPage.xaml.cs">
+      <DependentUpon>DocumentListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ShareAccessPage.xaml.cs">
+      <DependentUpon>ShareAccessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewDocumentPage.xaml.cs">
+      <DependentUpon>NewDocumentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavBarViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessRight.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AccessRightResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentTypeResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ImageResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\JsonResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SingleDocumentResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SingleUserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Keys.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -28,9 +62,29 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NavBarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <IncludeInPackage>false</IncludeInPackage>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DocumentListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ShareAccessPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewDocumentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

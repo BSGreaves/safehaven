@@ -10,6 +10,11 @@ namespace SafeHaven.Views
         public HomePage()
         {
             InitializeComponent();
+            Title = "SafeHaven";
+            if (!Application.Current.Properties.ContainsKey("ActiveUser"))
+            {
+                Application.Current.Properties["ActiveUser"] = 1;
+            }
         }
     }
 }
