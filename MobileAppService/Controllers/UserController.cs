@@ -12,10 +12,10 @@ using Microsoft.EntityFrameworkCore;
 namespace SafeHaven.Controllers
 {
     [Route("[controller]")]
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
         private SafeHavenContext _context;
-        public CustomerController(SafeHavenContext ctx)
+        public UserController(SafeHavenContext ctx)
         {
             _context = ctx;
         }
@@ -33,7 +33,7 @@ namespace SafeHaven.Controllers
         }
 
         // GET SINGLE
-        [HttpGet("{id}", Name = "GetSingleCustomer")]
+        [HttpGet("{id}")]
         public IActionResult Get([FromRoute] int id)
         {
             // If you request anything other than an Id you will get a return of BadRequest. 
@@ -57,20 +57,64 @@ namespace SafeHaven.Controllers
             }
         }
 
-        // public IActionResult Post([FromBody] User newUser)
-        // {
-        //     // Probably needs Identity/Auth working
-        // }
-        
-        private bool UserExists(int userid)
-        {
-          return _context.User.Count(e => e.UserID == userid) > 0;
-        }
+        // POST
+        [HttpPost]
+         public IActionResult Post([FromBody] User newUser)
+         {
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+            if (UserExists(newUser.Email))
+            { 
+                return BadRequest(ModelState);
+            }
 
-        // [HttpPut("{id}")]
-        // public IActionResult Put(int id, [FromBody] User modifiedCustomer)
-        // {
-        //     //Proably requires user/auth   
-        // }
-    }
+			_context.User.Add(newUser);
+			try
+			{
+				_context.SaveChanges();
+			}
+			catch (DbUpdateException)
+			{
+				return StatusCode(500);
+			}
+			return Ok();
+         }
+
+		// UPDATE
+		[HttpPut("{id}")]
+		public IActionResult Put(int id, [FromBody] User user)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (id != user.UserID)
+			{
+				return BadRequest();
+			}
+
+			_context.User.Update(user);
+
+			try
+			{
+				_context.SaveChanges();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				return StatusCode(500);
+			}
+
+			return Ok();
+		}
+
+		private bool UserExists(string email)
+		{
+			return _context.User.Count(e => e.Email == email) > 0;
+		}
+
+
+	}
 }

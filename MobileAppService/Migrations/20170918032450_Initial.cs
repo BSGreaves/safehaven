@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SafeHaven.MobileAppService.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +30,7 @@ namespace SafeHaven.MobileAppService.Migrations
                     Email = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     Street = table.Column<string>(nullable: true),
                     ZIP = table.Column<int>(nullable: false)
