@@ -8,12 +8,22 @@ namespace SafeHaven.Views
 {
 	public partial class DocumentListPage : ContentPage
     {
-        void NewDocument(object sender, System.EventArgs e)
+        async void Handle_Activated(object sender, System.EventArgs e)
         {
-            throw new NotImplementedException();
+			var newPage = new NewDocumentPage();
+			await Navigation.PushModalAsync(newPage);
         }
 
         public List<Document> Documents { get; set; }
+
+		async void NewDocument(object sender, System.EventArgs e)
+		{
+			if (DocumentList.SelectedItem != null)
+			{
+                var newPage = new SelectDocumentTypePage();
+                await Navigation.PushModalAsync(newPage);
+			}
+		}
 
 		public DocumentListPage()
         {

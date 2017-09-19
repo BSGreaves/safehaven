@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
+    Padding="0, 20, 0, 0"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="SafeHaven.Views.NewDocumentPage">
-	<TableView Intent="Form">
-        <TableRoot>
-            <TableSection Title="Document Details">
-                <EntryCell Label="Name" Placeholder="E.g. Auto Insurance " />
-                <EntryCell Label="Physical Location" Placeholder="E.g. filing cabinet" />
-                <ViewCell Tapped="SelectDocType">
-                    <StackLayout Orientation="Horizontal" Padding="13, 5">
-                        <Label Text="Document Type" VerticalOptions="Center" />
-                        <Label 
-                            x:Name="documentType"
-                            VerticalOptions="Center" 
-                            HorizontalOptions="EndAndExpand" 
-                            Text="None" 
-                            TextColor="Gray" />
-                    </StackLayout>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+	<StackLayout Padding="20, 0, 20, 0">
+        <Label Text="Name" HorizontalTextAlignment="Center" />
+        <Entry Placeholder="E.g. Auto insurance" HorizontalTextAlignment="Center" />
+        <Label Text="Physical Location" HorizontalTextAlignment="Center" />
+        <Entry Placeholder="E.g. Office filing cabinet" HorizontalTextAlignment="Center" />
+        <Label Text="Type of Document" HorizontalTextAlignment="Center" />
+        <Picker x:Name="documentTypes" Title="Document Type" SelectedIndexChanged="Handle_SelectedIndexChanged" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Notes" HorizontalTextAlignment="Center" />
+        <Editor VerticalOptions="FillAndExpand" BackgroundColor="#f7f4f4"  />
+    </StackLayout>
 </ContentPage>

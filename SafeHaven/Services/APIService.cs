@@ -34,5 +34,20 @@ namespace SafeHaven.Services
 				throw new NotImplementedException();
 			}
 		}
+
+		public async Task<DocumentTypeResponse> GetDocumentTypes()
+		{
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documenttype", string.Empty));
+			try
+			{
+				HttpResponseMessage response = await _client.GetAsync(uri);
+				var JSONstring = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<DocumentTypeResponse>(JSONstring);
+			}
+			catch
+			{
+				throw new NotImplementedException();
+			}
+		}
     }
 }
