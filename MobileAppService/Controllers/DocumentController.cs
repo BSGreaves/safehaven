@@ -33,7 +33,7 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
-			List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
+            List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
 			if (documents == null)
 			{
 				response.Success = false;
@@ -46,7 +46,7 @@ namespace SafeHaven.Controllers
 			return response;
 		}
 
-        // GET Single based on userID and include images
+        // GET Single based on docid and include images
         [HttpGet("{docid}")]
         public async Task<SingleDocumentResponse> GetSingle([FromRoute] int docid)
         {
@@ -86,7 +86,7 @@ namespace SafeHaven.Controllers
 			{
 				await _context.SaveChangesAsync();
 			}
-			catch (DbUpdateException)
+			catch
 			{
 				response.Success = false;
 				response.Message = "There was a a database error. Please try again.";

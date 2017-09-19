@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.DocumentDetailPage">
+    <ContentPage Title="Pictures" Padding="20, 20, 20, 20" Icon="photo.png">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Icon="new.png" Text="New" />
+        </ContentPage.ToolbarItems>
+        <StackLayout>
+            <Label Text="Pictures" HorizontalOptions="Center" FontSize="Large" TextColor="Maroon" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Details" Padding="20, 20, 20, 20" Icon="document.png">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Icon="editdocument.png" Text="Edit" />
+        </ContentPage.ToolbarItems>
+        <StackLayout Spacing="10">
+            <Label Text="Details" HorizontalOptions="Center" FontSize="Large" TextColor="Maroon" />
+            <Label Text="Title" FontAttributes="Bold"/>
+            <Label Text="{Binding Title}" />
+            <Label Text="Physical Location" FontAttributes="Bold" />
+            <Label Text="{Binding PhysicalLocation}" />
+            <Label Text="Notes" FontAttributes="Bold" />
+            <Label Text="{Binding Notes}" />
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>
