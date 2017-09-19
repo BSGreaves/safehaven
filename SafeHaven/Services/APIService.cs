@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SafeHaven.Models;
@@ -31,7 +32,7 @@ namespace SafeHaven.Services
 			}
 			catch
 			{
-				throw new NotImplementedException();
+                return new DocumentResponse { Message = "Our database is down at the moment, please try again later", Success = false };
 			}
 		}
 
@@ -43,6 +44,23 @@ namespace SafeHaven.Services
 				HttpResponseMessage response = await _client.GetAsync(uri);
 				var JSONstring = await response.Content.ReadAsStringAsync();
 				return JsonConvert.DeserializeObject<DocumentTypeResponse>(JSONstring);
+			}
+			catch
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		public async Task<JsonResponse> SaveNewDocument(Document newDocument)
+		{
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/document/post", string.Empty));
+			try
+			{
+				var jsonRequest = JsonConvert.SerializeObject(newDocument);
+				var fullRequest = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+				HttpResponseMessage response = await _client.PostAsync(uri, fullRequest);
+				var jsonResponse = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<JsonResponse>(jsonResponse);
 			}
 			catch
 			{

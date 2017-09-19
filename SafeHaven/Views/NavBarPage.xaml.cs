@@ -19,19 +19,19 @@ namespace SafeHaven.Views
             {
                 new NavBarItem
                 {
-                    Title = "My Documents",
+                    Title = "My Docs",
                     IconSrc = "",
                     TargetType = typeof(DocumentListPage)
                 },
                 new NavBarItem
                 {
-                    Title = "New Document",
+                    Title = "Share Access",
                     IconSrc = "",
                     TargetType = typeof(NewDocumentPage)
                 },
                 new NavBarItem
                 {
-                    Title = "Share and Access",
+                    Title = "Gain Access",
                     IconSrc = "",
                     TargetType = typeof(ShareAccessPage)
                 },

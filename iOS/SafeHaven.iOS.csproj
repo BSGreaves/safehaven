@@ -132,6 +132,15 @@
     <BundleResource Include="Resources\new.png" />
     <BundleResource Include="Resources\new%402x.png" />
     <BundleResource Include="Resources\new%403x.png" />
+    <BundleResource Include="Resources\editdocument%403x.png" />
+    <BundleResource Include="Resources\editdocument%402x.png" />
+    <BundleResource Include="Resources\editdocument.png" />
+    <BundleResource Include="Resources\document%403x.png" />
+    <BundleResource Include="Resources\document%402x.png" />
+    <BundleResource Include="Resources\document.png" />
+    <BundleResource Include="Resources\photo%403x.png" />
+    <BundleResource Include="Resources\photo%402x.png" />
+    <BundleResource Include="Resources\photo.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
