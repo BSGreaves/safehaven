@@ -67,5 +67,21 @@ namespace SafeHaven.Services
 				throw new NotImplementedException();
 			}
 		}
+
+        public async Task<SingleDocumentResponse> GetSingleDocument(int docid)
+        {
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/document/getsingle/" + docid, string.Empty));
+			try
+			{
+				HttpResponseMessage response = await _client.GetAsync(uri);
+				var JSONstring = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<SingleDocumentResponse>(JSONstring);
+			}
+			catch
+			{
+				throw new NotImplementedException();
+			}
+
+        }
     }
 }

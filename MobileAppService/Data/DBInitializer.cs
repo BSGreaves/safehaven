@@ -47,7 +47,7 @@ namespace SafeHaven.MobileAppService.Data
 						Street = "333 Thomas St.",
 						ZIP = 12938,
 						State = "NY"
-					},
+					}
 				};
 				// Adds each new user into the context
 				foreach (User i in users)

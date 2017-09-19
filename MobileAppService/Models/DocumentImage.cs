@@ -18,5 +18,7 @@ namespace SafeHaven.MobileAppService.Models
         public int PageNumber { get; set; }
         [Required]
         public string FilePath { get; set; }
+		[Required]
+		public string UrlPath { get; set; }
     }
 }

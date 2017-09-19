@@ -52,6 +52,5 @@ namespace SafeHaven.Views
         {
             SetDocumentsList();
         }
-
     }
 }

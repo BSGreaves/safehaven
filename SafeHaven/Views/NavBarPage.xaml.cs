@@ -27,7 +27,7 @@ namespace SafeHaven.Views
                 {
                     Title = "Share Access",
                     IconSrc = "",
-                    TargetType = typeof(NewDocumentPage)
+                    TargetType = typeof(ShareAccessPage)
                 },
                 new NavBarItem
                 {

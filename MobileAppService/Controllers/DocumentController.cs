@@ -57,7 +57,8 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
-			var document = await _context.Document.Include("DocumentImages").SingleOrDefaultAsync(m => m.DocumentID == docid);
+            var document = await _context.Document.Include("DocumentImages").SingleOrDefaultAsync(m => m.DocumentID == docid);
+            document.DocumentType = await _context.DocumentType.SingleOrDefaultAsync(x => x.DocumentTypeID == document.DocumentTypeID);
 			if (document == null)
 			{
 				response.Success = false;

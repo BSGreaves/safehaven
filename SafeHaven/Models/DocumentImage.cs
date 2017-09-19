@@ -9,5 +9,6 @@ namespace SafeHaven.Models
 		public virtual Document Document { get; set; }
 		public int PageNumber { get; set; }
 		public string FilePath { get; set; }
+		public string UrlPath { get; set; }
 	}
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace SafeHaven.Controllers
 {
@@ -49,6 +50,15 @@ namespace SafeHaven.Controllers
 				return NotFound();
 			}
 			return Ok(image);
+		}
+
+		[HttpGet("{filepath}")]
+        public IActionResult Get([FromRoute] string filepath)
+		{
+            string directory = Directory.GetCurrentDirectory();
+            string fullpath = directory + "/Data/Images/" + filepath;
+			var image =  System.IO.File.OpenRead(fullpath);
+			return File(image, "image/jpeg");
 		}
 
 		// POST url/Order
