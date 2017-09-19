@@ -13,11 +13,11 @@ namespace SafeHaven.Controllers
 {
 	[Route("[controller]/[action]")]
 
-	public class ImageController : Controller
+	public class DocumentImageController : Controller
 	{
 		private SafeHavenContext _context;
 
-		public ImageController(SafeHavenContext ctx)
+		public DocumentImageController(SafeHavenContext ctx)
 		{
 			_context = ctx;
 		}
@@ -26,7 +26,7 @@ namespace SafeHaven.Controllers
 		[HttpGet("{docid}")]
 		public IActionResult GetAll(int docid)
 		{
-			IQueryable<Image> images = _context.Image.Where(x => x.DocumentID == docid);
+			IQueryable<DocumentImage> images = _context.DocumentImage.Where(x => x.DocumentID == docid);
 
 			if (images == null)
 			{
@@ -43,7 +43,7 @@ namespace SafeHaven.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			Image image = _context.Image.SingleOrDefault(m => m.ImageID == imgid);
+			DocumentImage image = _context.DocumentImage.SingleOrDefault(m => m.DocumentImageID == imgid);
 			if (image == null)
 			{
 				return NotFound();
@@ -53,7 +53,7 @@ namespace SafeHaven.Controllers
 
 		// POST url/Order
 		[HttpPost]
-		public IActionResult Post([FromBody] Image image)
+		public IActionResult Post([FromBody] DocumentImage image)
 		{
             // NB! NEEDS LOGIC
             // Needs to save the image to a local filepath, then store the path in the img obj
@@ -63,7 +63,7 @@ namespace SafeHaven.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			_context.Image.Add(image);
+			_context.DocumentImage.Add(image);
 			try
 			{
 				_context.SaveChanges();
@@ -77,19 +77,19 @@ namespace SafeHaven.Controllers
 
 		// UPDATE
 		[HttpPut("{imgid}")]
-		public IActionResult Put(int imgid, [FromBody] Image image)
+		public IActionResult Put(int imgid, [FromBody] DocumentImage image)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			if (imgid != image.ImageID)
+			if (imgid != image.DocumentImageID)
 			{
 				return BadRequest();
 			}
 
-			_context.Image.Update(image);
+			_context.DocumentImage.Update(image);
 
 			try
 			{
@@ -111,13 +111,13 @@ namespace SafeHaven.Controllers
 				return BadRequest(ModelState);
 			}
 
-			Image image = _context.Image.SingleOrDefault(x => x.ImageID == imgid);
+			DocumentImage image = _context.DocumentImage.SingleOrDefault(x => x.DocumentImageID == imgid);
 			if (image == null)
 			{
 				return NotFound();
 			}
 
-			_context.Image.Remove(image);
+			_context.DocumentImage.Remove(image);
 			try
 			{
 				_context.SaveChanges();

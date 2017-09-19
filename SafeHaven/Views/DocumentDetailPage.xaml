@@ -5,7 +5,9 @@
             <ToolbarItem Icon="new.png" Text="New" />
         </ContentPage.ToolbarItems>
         <StackLayout>
-            <Label Text="Pictures" HorizontalOptions="Center" FontSize="Large" TextColor="Maroon" />
+            <Label Text="Details" HorizontalOptions="Center" FontSize="Large" TextColor="Maroon" />
+            <ScrollView x:Name="ImageScroller">
+            </ScrollView>
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Details" Padding="20, 20, 20, 20" Icon="document.png">

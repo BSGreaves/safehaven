@@ -45,8 +45,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentTypeResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Image.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ImageResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentImageResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\JsonResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SingleDocumentResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SingleUserResponse.cs" />

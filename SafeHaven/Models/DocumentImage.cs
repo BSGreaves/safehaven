@@ -1,9 +1,9 @@
 ﻿using System;
 namespace SafeHaven.Models
 {
-	public class Image
+	public class DocumentImage
 	{
-		public int ImageID { get; set; }
+		public int DocumentImageID { get; set; }
 		public DateTime DateCreated { get; set; }
 		public int DocumentID { get; set; }
 		public virtual Document Document { get; set; }

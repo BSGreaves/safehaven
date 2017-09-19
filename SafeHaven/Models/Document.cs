@@ -14,6 +14,6 @@ namespace SafeHaven.Models
 		public virtual DocumentType DocumentType { get; set; }
 		public string PhysicalLocation { get; set; }
 		public string Notes { get; set; }
-		public virtual ICollection<Image> DocumentImages { get; set; }
+		public virtual ICollection<DocumentImage> DocumentImages { get; set; }
 	}
 }

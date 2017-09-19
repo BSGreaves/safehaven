@@ -151,30 +151,30 @@ namespace SafeHaven.MobileAppService.Data
 				}
 				context.SaveChanges();
 
-				var images = new Image[]
+				var images = new DocumentImage[]
 				{
-					new Image{
+					new DocumentImage{
 						DateCreated = new DateTime(2017, 06, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Jill's Passport").DocumentID,
 						FilePath = "/Data/Images/jillpassport.png",
 						PageNumber = 1
 					},
-					new Image{
+					new DocumentImage{
 						DateCreated = new DateTime(2017, 05, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Health Insurance 2017").DocumentID,
 						FilePath = "/Data/Images/healthinsurance.gif",
 						PageNumber = 1
 					},
-					new Image{
+					new DocumentImage{
 						DateCreated = new DateTime(2017, 04, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Estate Plan").DocumentID,
 						FilePath = "/Data/Images/will.jpg",
 						PageNumber = 1
 					}
 				};
-				foreach (Image p in images)
+				foreach (DocumentImage p in images)
 				{
-					context.Image.Add(p);
+					context.DocumentImage.Add(p);
 				}
 				context.SaveChanges();
 			}
