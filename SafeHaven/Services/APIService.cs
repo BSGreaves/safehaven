@@ -119,6 +119,36 @@ namespace SafeHaven.Services
 			}
 		}
 
+		public async Task<AccessRightResponse> GetAccessRightsWhereGrantor(int userID)
+		{
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/accessright/getwheregrantor/" + userID, string.Empty));
+			try
+			{
+				HttpResponseMessage response = await _client.GetAsync(uri);
+				var JSONstring = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<AccessRightResponse>(JSONstring);
+			}
+			catch
+			{
+				return new AccessRightResponse { Message = "Our database is down at the moment, please try again later", Success = false };
+			}
+		}
+
+		public async Task<JsonResponse> SaveNewAccessRight(NewAccessRight newaccessright)
+		{
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/accessright/post/", string.Empty));
+			try
+			{
+				HttpResponseMessage response = await _client.GetAsync(uri);
+				var JSONstring = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<JsonResponse>(JSONstring);
+			}
+			catch
+			{
+				return new JsonResponse { Message = "Our database is down at the moment, please try again later", Success = false };
+			}
+		}
+
    //     public async Task<JsonResponse> SaveNewPhoto(Plugin.Media.Abstractions.MediaFile file, int docid)
    //     {
    //         var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documentimage/post/" + docid, string.Empty));

@@ -31,5 +31,11 @@ namespace SafeHaven.Views
 			}
         }
 
+		void Logout(object sender, System.EventArgs e)
+		{
+            Application.Current.Properties["ActiveUser"] = null;
+			CheckForActiveUser();
+		}
+
     }
 }

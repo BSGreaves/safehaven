@@ -6,5 +6,6 @@
         <Label Text="Upload Your Important Documents" HorizontalTextAlignment="Center" />
         <Label Text="Share access with your loved ones" HorizontalTextAlignment="Center" />
         <Button Text="Go to My Docs" TextColor="White" Clicked="GoToMyDocs" BackgroundColor="#84000f" />
+        <Button Text="Logout" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Logout" />
     </StackLayout>
 </ContentPage>

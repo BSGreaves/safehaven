@@ -51,7 +51,7 @@ namespace SafeHaven.Views
 				{
 					Title = "Logout",
 					IconSrc = "logout.png",
-					TargetType = typeof(ProfilePage),
+					TargetType = typeof(HomePage),
 					TextColor = "#ffffff"
 				}
             };

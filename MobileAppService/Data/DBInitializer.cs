@@ -208,6 +208,11 @@ namespace SafeHaven.MobileAppService.Data
 						AccessorID = context.User.Single(x => x.FirstName == "Jill").UserID
 					}
                 };
+				foreach (AccessRight ar in accessrights)
+				{
+					context.AccessRight.Add(ar);
+				}
+				context.SaveChanges();
 			}
 		}
 	}

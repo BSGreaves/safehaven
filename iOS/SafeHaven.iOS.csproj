@@ -163,6 +163,9 @@
     <BundleResource Include="Resources\grantaccess%402x.png" />
     <BundleResource Include="Resources\grantaccess.png" />
     <BundleResource Include="Resources\documentplaceholder.png" />
+    <BundleResource Include="Resources\home%403x.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\home.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
