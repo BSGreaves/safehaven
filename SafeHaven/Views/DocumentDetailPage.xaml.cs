@@ -36,7 +36,6 @@ namespace SafeHaven.Views
 				foreach (DocumentImage img in response.Document.DocumentImages)
 				{
 					StackLayout stack = new StackLayout();
-					//var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documentimage/get/" + img.FilePath, string.Empty));
 					Image image = new Image()
 					{
 						Aspect = Aspect.AspectFit,
@@ -46,8 +45,6 @@ namespace SafeHaven.Views
                     {
                         Stream stream = await file.OpenAsync(PCLStorage.FileAccess.Read);
                         image.Source = ImageSource.FromStream(() => stream);
-                        //Label label = new Label { Text = "Page " + img.PageNumber, HorizontalTextAlignment = TextAlignment.Center };
-                        //stack.Children.Add(label);
                         stack.Children.Add(image);
                         ParentStack.Children.Add(stack);
                     }
@@ -58,7 +55,6 @@ namespace SafeHaven.Views
             {
                 StackLayout stack = new StackLayout();
 				Label label = new Label { Text = "You haven't taken any pictures yet", HorizontalTextAlignment = TextAlignment.Center };
-
 			}
 		}
 
@@ -69,7 +65,7 @@ namespace SafeHaven.Views
 
 		async void NewImage(object sender, System.EventArgs e)
 		{
-			await Navigation.PushModalAsync(new NewPhotoTest(_document));
+			await Navigation.PushModalAsync(new NewImagePage(_document));
 		}
 	}
 }

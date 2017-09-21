@@ -49,7 +49,7 @@ namespace SafeHaven.Controllers
             return response;
 		}
 
-		// GET all where user is grantor
+		// GET all where user is accessor
 		[HttpGet("{userid}")]
 		public async Task<AccessRightResponse> GetWhereAccessor([FromRoute] int userid)
 		{
@@ -66,6 +66,10 @@ namespace SafeHaven.Controllers
 				response.Success = false;
 				response.Message = "No items found.";
 				return response;
+			}
+			foreach (AccessRight ar in accessrights)
+			{
+				ar.Grantor.Password = null;
 			}
 			response.AccessRights = accessrights;
 			response.Success = true;
