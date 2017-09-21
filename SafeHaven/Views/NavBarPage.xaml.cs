@@ -20,27 +20,40 @@ namespace SafeHaven.Views
                 new NavBarItem
                 {
                     Title = "My Docs",
-                    IconSrc = "",
-                    TargetType = typeof(DocumentListPage)
+                    IconSrc = "mydocs.png",
+                    TargetType = typeof(DocumentListPage),
+                    TextColor = "#ffffff"
                 },
                 new NavBarItem
                 {
-                    Title = "Share Access",
-                    IconSrc = "",
-                    TargetType = typeof(ShareAccessPage)
-                },
+                    Title = "Grant Access",
+                    IconSrc = "grantaccess.png",
+                    TargetType = typeof(GrantAccessPage),
+					TextColor = "#ffffff"
+
+				},
                 new NavBarItem
                 {
                     Title = "Gain Access",
-                    IconSrc = "",
-                    TargetType = typeof(ShareAccessPage)
-                },
+                    IconSrc = "gainaccess.png",
+                    TargetType = typeof(GainAccessPage),
+					TextColor = "#ffffff"
+
+				},
                 new NavBarItem
                 {
                     Title = "Profile",
-                    IconSrc = "",
-                    TargetType = typeof(ProfilePage)
-                }
+                    IconSrc = "profile.png",
+                    TargetType = typeof(ProfilePage),
+					TextColor = "#ffffff"
+				},
+				new NavBarItem
+				{
+					Title = "Logout",
+					IconSrc = "logout.png",
+					TargetType = typeof(ProfilePage),
+					TextColor = "#ffffff"
+				}
             };
 
             navbarlist.ItemsSource = NavBarItems;

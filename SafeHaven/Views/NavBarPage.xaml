@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage  Padding="0, 20, 0, 0" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.NavBarPage">
-    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Gray">
+<ContentPage Padding="0, 20, 0, 0" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.NavBarPage">
+    <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout Padding="17, 10, 20, 10">
+            <Label FontSize="Large" Text="SafeHaven" FontFamily="Futura-CondensedExtraBold" TextColor="White" />
+        </StackLayout>
         <ListView x:Name="navbarlist" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell Text="{Binding Title}" />
+                    <ImageCell Text="{Binding Title}" TextColor="{Binding TextColor}" ImageSource="{Binding IconSrc}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

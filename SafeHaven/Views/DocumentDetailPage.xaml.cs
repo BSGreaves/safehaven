@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SafeHaven.Models;
+using SafeHaven.Services;
 using Xamarin.Forms;
 
 namespace SafeHaven.Views
@@ -10,71 +11,59 @@ namespace SafeHaven.Views
 
 		private Document _document { get; set; }
 
+        private Keys _keys;
+
         public DocumentDetailPage(Document document)
         {
-            InitializeComponent();
+			_keys = new Keys();
+			InitializeComponent();
             _document = document;
-			//BindingContext = _document ?? throw new ArgumentNullException();
-
-			List<DocumentImage> images = new List<DocumentImage>
-            {
-                new DocumentImage
-                {
-                    DocumentImageID = 1,
-                    DocumentID = 1,
-                    PageNumber = 1,
-                    FilePath = "http://www.falsof.com/images/Document_Mutual_Release.gif"
-                },
-				new DocumentImage
-				{
-					DocumentImageID = 2,
-					DocumentID = 1,
-					PageNumber = 3,
-					FilePath = "http://www.falsof.com/images/Document_Mutual_Release.gif"
-				},
-				new DocumentImage
-				{
-					DocumentImageID = 3,
-					DocumentID = 1,
-					PageNumber = 3,
-					FilePath = "http://www.falsof.com/images/Document_Mutual_Release.gif"
-				}
-            };
 		}
 
 		public async void SetDocument(int docid)
 		{
-			var response = await App.APIService.GetSingleDocument(docid);
-            if (response.Success)
-            {
-                BindingContext = response.Document;
-				StackLayout ParentStack = new StackLayout();
-				foreach (DocumentImage img in response.Document.DocumentImages)
-				{
-					var stack = new StackLayout();
-					Image image = new Image()
-					{
-						Aspect = Aspect.AspectFit,
-						Source = new UriImageSource { Uri = new Uri(img.FilePath) },
-
-					};
-					Label label = new Label { Text = "Page {img.PageNumber}", HorizontalTextAlignment = TextAlignment.Center };
-					stack.Children.Add(label);
-					stack.Children.Add(image);
-					ParentStack.Children.Add(stack);
-				}
-				ImageScroller.Content = ParentStack;
-            }
-            else
+			SingleDocumentResponse response = await App.APIService.GetSingleDocument(docid);
+            if (response.Document == null)
             {
                 await DisplayAlert("Error", response.Message, "Okay");
             }
+            BindingContext = response.Document;
+			StackLayout ParentStack = new StackLayout();
+            if (response.Document.DocumentImages != null)
+            {
+				foreach (DocumentImage img in response.Document.DocumentImages)
+				{
+					StackLayout stack = new StackLayout();
+					var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documentimage/get/" + img.FilePath, string.Empty));
+					Image image = new Image()
+					{
+						Aspect = Aspect.AspectFit,
+						Source = new UriImageSource { Uri = uri }
+					};
+					Label label = new Label { Text = "Page " + img.PageNumber, HorizontalTextAlignment = TextAlignment.Center };
+					stack.Children.Add(label);
+					stack.Children.Add(image);
+					ParentStack.Children.Add(stack);
+					
+					ImageScroller.Content = ParentStack;
+				}
+            }
+            if (response.Document.DocumentImages == null)
+            {
+                StackLayout stack = new StackLayout();
+				Label label = new Label { Text = "You haven't taken any pictures yet", HorizontalTextAlignment = TextAlignment.Center };
+
+			}
 		}
 
 		protected override void OnAppearing()
 		{
-            
 			SetDocument(_document.DocumentID);
+		}
+
+		async void NewImage(object sender, System.EventArgs e)
+		{
+			await Navigation.PushModalAsync(new NewImagePage(_document));
 		}
 	}
 }

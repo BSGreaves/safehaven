@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SafeHaven.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class UserController : Controller
     {
         private SafeHavenContext _context;
@@ -38,6 +38,61 @@ namespace SafeHaven.Controllers
             return response;
         }
 
+		[HttpPost]
+		public async Task<SingleUserResponse> Login([FromBody] User user)
+		{
+			SingleUserResponse response = new SingleUserResponse();
+			User checkuser = await _context.User.SingleOrDefaultAsync(x => x.Email == user.Email);
+			if (checkuser == null)
+			{
+				response.Success = false;
+				response.Message = "This email has not been registered. Please sign up!";
+				return response;
+			}
+            if (checkuser.Password != user.Password)
+            {
+                response.Success = false;
+                response.Message = "Incorrect password. Please try again.";
+            }
+            response.Success = true;
+            response.Message = "Login successful.";
+            checkuser.Password = null;
+            response.User = checkuser;
+			return response;
+		}
+
+		// POST
+		[HttpPost]
+		public async Task<SingleUserResponse> Register([FromBody] User newUser)
+		{
+			SingleUserResponse response = new SingleUserResponse();
+			response.Success = false;
+			if (!ModelState.IsValid)
+			{
+				response.Message = "Invalid credentials. Please enter a valid email and password.";
+				return response;
+			}
+			if (UserExists(newUser.Email))
+			{
+				response.Message = "This email address has already been registered. Please log in with this email or use a new email address.";
+				return response;
+			}
+			_context.User.Add(newUser);
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateException)
+			{
+				response.Message = "We encountered a database error. Please try again later or contact our team for assistance.";
+				return response;
+			}
+			response.Success = true;
+			response.Message = "Registration successful!";
+            response.User = newUser;
+			return response;
+		}
+
         // GET SINGLE
         [HttpGet("{id}")]
         public async Task<SingleUserResponse> Get([FromRoute] int id)
@@ -61,38 +116,6 @@ namespace SafeHaven.Controllers
             response.User = user;
 			return response;
         }
-
-        // POST
-        [HttpPost]
-         public async Task<JsonResponse> Post([FromBody] User newUser)
-         {
-            JsonResponse response = new JsonResponse();
-            response.Success = false;
-			if (!ModelState.IsValid)
-			{
-                response.Message = "Invalid credentials. Please enter a valid email and password.";
-                return response;
-			}
-            if (UserExists(newUser.Email))
-            {
-                response.Message = "This email address has already been registered. Please log in with this email or use a new email address.";
-				return response;
-			}
-
-			_context.User.Add(newUser);
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateException)
-			{
-				response.Message = "We encountered a database error. Please try again later or contact our team for assistance.";
-				return response;
-			}
-			response.Success = true;
-			response.Message = "Registration successful!";
-            return response;
-         }
 
 		// UPDATE
 		[HttpPut("{id}")]

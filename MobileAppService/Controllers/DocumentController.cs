@@ -33,7 +33,7 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
-            List<Document> documents = await _context.Document.Where(x => x.UserID == userid).ToListAsync();
+            List<Document> documents = await _context.Document.Where(x => x.UserID == userid).Include("DocumentType").ToListAsync();
 			if (documents == null)
 			{
 				response.Success = false;
@@ -57,8 +57,7 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
-            var document = await _context.Document.Include("DocumentImages").SingleOrDefaultAsync(m => m.DocumentID == docid);
-            document.DocumentType = await _context.DocumentType.SingleOrDefaultAsync(x => x.DocumentTypeID == document.DocumentTypeID);
+            var document = await _context.Document.Include("DocumentType").Include("DocumentImages").SingleOrDefaultAsync(m => m.DocumentID == docid);
 			if (document == null)
 			{
 				response.Success = false;

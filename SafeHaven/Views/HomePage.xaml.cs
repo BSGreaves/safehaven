@@ -7,6 +7,11 @@ namespace SafeHaven.Views
 {
     public partial class HomePage : ContentPage
     {
+        async void GoToMyDocs(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new DocumentListPage());
+		}
+
         public HomePage()
         {
             InitializeComponent();
@@ -15,6 +20,16 @@ namespace SafeHaven.Views
             {
                 Application.Current.Properties["ActiveUser"] = 1;
             }
+            CheckForActiveUser();
         }
+
+        public void CheckForActiveUser()
+        {
+			if (Application.Current.Properties["ActiveUser"] == null)
+			{
+				Navigation.PushModalAsync(new LoginPage());
+			}
+        }
+
     }
 }

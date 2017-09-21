@@ -8,5 +8,7 @@ namespace SafeHaven.ViewModels
 		public string IconSrc { get; set; }
 
 		public Type TargetType { get; set; }
+
+        public string TextColor { get; set; }
     }
 }

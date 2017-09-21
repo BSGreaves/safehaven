@@ -28,6 +28,7 @@ namespace SafeHaven.MobileAppService.Data
 						FirstName = "Jill",
 						LastName = "Smith",
 						Email = "a@a.com",
+                        Password = "aaaaaa",
 						Street = "111 Bob St.",
 						ZIP = 38101,
 						State = "TN"
@@ -36,6 +37,7 @@ namespace SafeHaven.MobileAppService.Data
 						FirstName = "Nigel",
 						LastName = "Thornberry",
 						Email = "b@b.com",
+                        Password = "bbbbbb",
 						Street = "222 Saint St.",
 						ZIP = 39881,
 						State = "CA"
@@ -44,6 +46,7 @@ namespace SafeHaven.MobileAppService.Data
 						FirstName = "Mark",
 						LastName = "Jones",
 						Email = "c@c.com",
+                        Password = "cccccc",
 						Street = "333 Thomas St.",
 						ZIP = 12938,
 						State = "NY"
@@ -156,19 +159,19 @@ namespace SafeHaven.MobileAppService.Data
 					new DocumentImage{
 						DateCreated = new DateTime(2017, 06, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Jill's Passport").DocumentID,
-						FilePath = "/Data/Images/jillpassport.png",
+						FilePath = "1.jpg",
 						PageNumber = 1
 					},
 					new DocumentImage{
 						DateCreated = new DateTime(2017, 05, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Health Insurance 2017").DocumentID,
-						FilePath = "/Data/Images/healthinsurance.gif",
+						FilePath = "1.jpg",
 						PageNumber = 1
 					},
 					new DocumentImage{
 						DateCreated = new DateTime(2017, 04, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Estate Plan").DocumentID,
-						FilePath = "/Data/Images/will.jpg",
+						FilePath = "1.jpg",
 						PageNumber = 1
 					}
 				};
@@ -177,6 +180,34 @@ namespace SafeHaven.MobileAppService.Data
 					context.DocumentImage.Add(p);
 				}
 				context.SaveChanges();
+
+                var accessrights = new AccessRight[]
+                {
+                    new AccessRight {
+                        GrantorID = context.User.Single(x => x.FirstName == "Jill").UserID,
+                        AccessorID = context.User.Single(x => x.FirstName == "Mark").UserID
+                    },
+					new AccessRight {
+						GrantorID = context.User.Single(x => x.FirstName == "Jill").UserID,
+						AccessorID = context.User.Single(x => x.FirstName == "Nigel").UserID
+					},
+					new AccessRight {
+						GrantorID = context.User.Single(x => x.FirstName == "Nigel").UserID,
+						AccessorID = context.User.Single(x => x.FirstName == "Mark").UserID
+					},
+					new AccessRight {
+						GrantorID = context.User.Single(x => x.FirstName == "Nigel").UserID,
+						AccessorID = context.User.Single(x => x.FirstName == "Jill").UserID
+					},
+					new AccessRight {
+						GrantorID = context.User.Single(x => x.FirstName == "Mark").UserID,
+						AccessorID = context.User.Single(x => x.FirstName == "Nigel").UserID
+					},
+					new AccessRight {
+						GrantorID = context.User.Single(x => x.FirstName == "Mark").UserID,
+						AccessorID = context.User.Single(x => x.FirstName == "Jill").UserID
+					}
+                };
 			}
 		}
 	}

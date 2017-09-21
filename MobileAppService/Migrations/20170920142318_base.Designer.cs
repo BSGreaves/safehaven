@@ -8,8 +8,8 @@ using SafeHaven.MobileAppService.Data;
 namespace SafeHaven.MobileAppService.Migrations
 {
     [DbContext(typeof(SafeHavenContext))]
-    [Migration("20170919192252_initial")]
-    partial class initial
+    [Migration("20170920142318_base")]
+    partial class @base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

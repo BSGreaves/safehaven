@@ -31,8 +31,9 @@ namespace SafeHaven.MobileAppService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-			//string path = System.Environment.GetEnvironmentVariable("SAFEHAVENDB");
+            services.AddMvc()
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+			services.AddMvc();
 			var connection = $"Filename=/Users/bsg/workspace/personalproj/SafeHaven/MobileAppService/Data/SafeHaven.db";
 			services.AddDbContext<SafeHavenContext>(options => options.UseSqlite(connection));
         }
