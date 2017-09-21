@@ -17,6 +17,7 @@ namespace SafeHaven.Views
         public NewImagePage(Document document)
         {
             InitializeComponent();
+
             _document = document;
 
 			takePhoto.Clicked += async (sender, args) =>
@@ -33,15 +34,15 @@ namespace SafeHaven.Views
 					PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
 					Directory = "Sample",
 					Name = "test.jpg",
-                    SaveToAlbum = true
+					SaveToAlbum = true
 				});
 
 				if (file == null)
 					return;
 
-				await DisplayAlert("File Location", file.Path, "OK");
+				_file = file;
 
-                _file = file;
+                await DisplayAlert("Path", _file.Path, "OK");
 
 				image.Source = ImageSource.FromStream(() =>
 				{
@@ -58,21 +59,20 @@ namespace SafeHaven.Views
 
 		async void Save(object sender, System.EventArgs e)
 		{
-            if (_file == null)
-            {
-                await DisplayAlert("Oops!", "Take a photo first", "OK");
-                return;
-            }
-            var filebytes = File.ReadAllBytes(_file.Path);
-            var file = new ByteFile
-            {
-                File = filebytes,
-                DocumentID = _document.DocumentID
-            };
-
-            //var response = App.APIService.SaveNewPhoto(_file, _document.DocumentID);
-			//await DisplayAlert("Oops!", "", "OK");
-
+			if (_file == null)
+			{
+				await DisplayAlert("Oops!", "Take a photo first", "OK");
+				return;
+			}
+			DocumentImage newdocumentimage = new DocumentImage
+			{
+				DocumentID = _document.DocumentID,
+				FilePath = _file.Path,
+				DateCreated = DateTime.Today,
+				PageNumber = 1
+			};
+			var response = App.APIService.SaveNewPhoto(newdocumentimage);
+			await Navigation.PopModalAsync();
 		}
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.NonOwnerDocumentDetailPage">
+	<ContentPage Title="Pictures" Padding="20, 20, 20, 20" Icon="photo.png">
+        <StackLayout>
+            <Label Text="Pictures" HorizontalOptions="Center" FontSize="Large" TextColor="{StaticResource Primary}" />
+            <ScrollView x:Name="ImageScroller">
+            </ScrollView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Details" Padding="0, 20, 0, 20" Icon="document.png">
+        <StackLayout Spacing="10">
+            <Label Text="Details" HorizontalOptions="Center" FontSize="Large" TextColor="{StaticResource Primary}" />
+            <StackLayout Padding="25, 5, 25, 5" BackgroundColor="{StaticResource Primary}" >
+                <Label Text="Title" HorizontalOptions="FillAndExpand" TextColor="White"  FontFamily="Futura-MediumItalic" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5">
+                <Label Text="{Binding Title}" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5" BackgroundColor="{StaticResource Primary}" >
+                <Label Text="Document Type" HorizontalOptions="FillAndExpand" TextColor="White"  FontFamily="Futura-MediumItalic" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5">
+                <Label Text="{Binding DocumentType.Title}" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5" BackgroundColor="{StaticResource Primary}" >
+                <Label Text="Physical Location" HorizontalOptions="FillAndExpand" TextColor="White"  FontFamily="Futura-MediumItalic" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5">
+                <Label Text="{Binding PhysicalLocation}" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5" BackgroundColor="{StaticResource Primary}" >
+                <Label Text="Notes" HorizontalOptions="FillAndExpand" TextColor="White"  FontFamily="Futura-MediumItalic" />
+            </StackLayout>
+            <StackLayout Padding="25, 5, 25, 5">
+                <Label Text="{Binding Notes}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

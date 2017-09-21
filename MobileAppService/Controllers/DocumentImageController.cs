@@ -47,6 +47,31 @@ namespace SafeHaven.Controllers
 			return File(image, "image/jpeg");
 		}
 
+		// POST url/Order
+		[HttpPost]
+		public async Task<JsonResponse> Post([FromBody] DocumentImage newdocumentimage)
+		{
+		    JsonResponse response = new JsonResponse { Success = false, Message = "Bad Request" };
+            if (newdocumentimage == null)
+            {
+                return response;
+            }
+		    _context.DocumentImage.Add(newdocumentimage);
+		    try
+	        {
+	            await _context.SaveChangesAsync();
+	        }
+		    catch
+		    {
+	            response.Success = false;
+	            response.Message = "There was a database error. Please try again.";
+	            return response;
+	        }
+	        response.Success = true;
+	        response.Message = "Added successfully";
+	        return response;
+		}
+
 		//// POST url/Order
 		//[HttpPost]
 		//public async Task<JsonResponse> Post(ByteFile file)
@@ -88,27 +113,27 @@ namespace SafeHaven.Controllers
 		//}
 
 		//// POST url/Order
-  //      [HttpPost("{docid}")]
+		//      [HttpPost("{docid}")]
 		//public async Task<JsonResponse> Post(int docid, StreamContent newimage)
 		//{
-  //          JsonResponse response = new JsonResponse { Success = false, Message = "Default" };
+		//          JsonResponse response = new JsonResponse { Success = false, Message = "Default" };
 		//	if (newimage != null)
 		//	{
-  //              Random random = new Random();
-  //              string filename = random.Next(2, 999999).ToString() + ".jpg";
+		//              Random random = new Random();
+		//              string filename = random.Next(2, 999999).ToString() + ".jpg";
 		//	    string directory = Directory.GetCurrentDirectory();
-  //              string localSavePath = directory + @"\Data\Images\" + filename;
+		//              string localSavePath = directory + @"\Data\Images\" + filename;
 		//		using (var stream = new FileStream(localSavePath, FileMode.Create))
 		//		{
 		//			await newimage.CopyToAsync(stream);
 		//		}
-  //              DocumentImage docimage = new DocumentImage
-  //              {
-  //                  DocumentID = docid,
-  //                  FilePath = filename,
+		//              DocumentImage docimage = new DocumentImage
+		//              {
+		//                  DocumentID = docid,
+		//                  FilePath = filename,
 		//			DateCreated = DateTime.Today,
 		//			PageNumber = 1
-  //              };
+		//              };
 		//		_context.DocumentImage.Add(docimage);
 		//		try
 		//		{
@@ -120,11 +145,11 @@ namespace SafeHaven.Controllers
 		//			response.Message = "There was a a database error. Please try again.";
 		//			return response;
 		//		}
-  //              response.Success = true;
+		//              response.Success = true;
 		//		response.Message = "Added successfully";
 		//		return response;
 		//	}
-  //          return response;
+		//          return response;
 		//}
 
 		// UPDATE

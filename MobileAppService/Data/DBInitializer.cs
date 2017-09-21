@@ -35,7 +35,7 @@ namespace SafeHaven.MobileAppService.Data
 					},
 					new User {
 						FirstName = "Nigel",
-						LastName = "Thornberry",
+						LastName = "Johnson",
 						Email = "b@b.com",
                         Password = "bbbbbb",
 						Street = "222 Saint St.",
@@ -123,30 +123,85 @@ namespace SafeHaven.MobileAppService.Data
 				var documents = new Document[]
 				{
 					new Document{
-						Title = "Jill's Passport",
+						Title = "My Emergency Contacts",
 						DateCreated = new DateTime(2017, 04, 28),
-						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Identification").DocumentTypeID,
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Other").DocumentTypeID,
 						PhysicalLocation = "Basement Safe",
-						Notes = "Expires 2019",
+						Notes = "Call Bill first!",
 						UserID = context.User.Single(x => x.FirstName == "Jill").UserID
-
 					},
 					new Document{
 						Title = "Health Insurance 2017",
 						DateCreated = new DateTime(2017, 03, 28),
 						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Insurance").DocumentTypeID,
 						PhysicalLocation = "Bedroom Closet",
-						Notes = "Cigna",
+						Notes = "Cigna Health",
 						UserID = context.User.Single(x => x.FirstName == "Jill").UserID
 					},
 					new Document{
-						Title = "Estate Plan",
+						Title = "SunTrust Annuity",
 						DateCreated = new DateTime(2017, 06, 28),
-						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Estate/Will").DocumentTypeID,
-						PhysicalLocation = "Bank of America Safe Deposit Box",
-						Notes = "Code is 201938",
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Pension").DocumentTypeID,
+						PhysicalLocation = "SunTrust Safe Deposit Box",
+						Notes = "Code on deposit box is 201938",
 						UserID = context.User.Single(x => x.FirstName == "Jill").UserID
 					},
+					new Document{
+						Title = "Ben's Driver's License",
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Identification").DocumentTypeID,
+						PhysicalLocation = "In his wallet",
+						Notes = "Expires 2021",
+						UserID = context.User.Single(x => x.FirstName == "Jill").UserID
+					},
+					new Document{
+						Title = "Mortgage details",
+						DateCreated = new DateTime(2017, 04, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Deed/Title").DocumentTypeID,
+						PhysicalLocation = "Basement Safe",
+						Notes = "30 year fixed",
+						UserID = context.User.Single(x => x.FirstName == "Nigel").UserID
+					},
+					new Document{
+						Title = "BoA Safe Deposit Box Contract",
+						DateCreated = new DateTime(2017, 03, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Checking/Savings Accounts").DocumentTypeID,
+						PhysicalLocation = "Bedroom Closet",
+						Notes = "Paid for five years until 2022",
+						UserID = context.User.Single(x => x.FirstName == "Nigel").UserID
+					},
+					new Document{
+						Title = "My Medications List",
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Medical").DocumentTypeID,
+						PhysicalLocation = "Filing cabinet in my office",
+						Notes = "I'm allergic to penicillin",
+						UserID = context.User.Single(x => x.FirstName == "Nigel").UserID
+					},
+					new Document{
+						Title = "American Express Credit Card",
+						DateCreated = new DateTime(2017, 04, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Credit/Loans").DocumentTypeID,
+						PhysicalLocation = "Basement Safe",
+						Notes = "Paid in full each month",
+						UserID = context.User.Single(x => x.FirstName == "Mark").UserID
+					},
+					new Document{
+						Title = "Car Insurance 2017",
+						DateCreated = new DateTime(2017, 03, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Insurance").DocumentTypeID,
+						PhysicalLocation = "Bedroom Closet",
+						Notes = "Geico",
+						UserID = context.User.Single(x => x.FirstName == "Mark").UserID
+					},
+					new Document{
+						Title = "My Estate Plan",
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentTypeID = context.DocumentType.Single(x => x.Title == "Estate/Will").DocumentTypeID,
+						PhysicalLocation = "Bedroom closet",
+						Notes = "Don't forget the eulogy",
+						UserID = context.User.Single(x => x.FirstName == "Mark").UserID
+					}
 				};
 				foreach (Document t in documents)
 				{
@@ -158,20 +213,62 @@ namespace SafeHaven.MobileAppService.Data
 				{
 					new DocumentImage{
 						DateCreated = new DateTime(2017, 06, 28),
-						DocumentID = context.Document.Single(x => x.Title == "Jill's Passport").DocumentID,
-						FilePath = "1.jpg",
+						DocumentID = context.Document.Single(x => x.Title == "My Emergency Contacts").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_40.jpg",
 						PageNumber = 1
 					},
 					new DocumentImage{
-						DateCreated = new DateTime(2017, 05, 28),
+						DateCreated = new DateTime(2017, 06, 28),
 						DocumentID = context.Document.Single(x => x.Title == "Health Insurance 2017").DocumentID,
-						FilePath = "1.jpg",
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_50.jpg",
 						PageNumber = 1
 					},
 					new DocumentImage{
-						DateCreated = new DateTime(2017, 04, 28),
-						DocumentID = context.Document.Single(x => x.Title == "Estate Plan").DocumentID,
-						FilePath = "1.jpg",
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "SunTrust Annuity").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_45.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "Ben's Driver's License").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_58.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "Mortgage details").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_49.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "BoA Safe Deposit Box Contract").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_47.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "My Medications List").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_41.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "American Express Credit Card").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_48.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "Car Insurance 2017").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_51.jpg",
+						PageNumber = 1
+					},
+					new DocumentImage{
+						DateCreated = new DateTime(2017, 06, 28),
+						DocumentID = context.Document.Single(x => x.Title == "My Estate Plan").DocumentID,
+						FilePath = "/var/mobile/Containers/Data/Application/7B2810CA-2AE5-400F-A198-7170DAFC538F/Documents/Sample/test_50.jpg",
 						PageNumber = 1
 					}
 				};

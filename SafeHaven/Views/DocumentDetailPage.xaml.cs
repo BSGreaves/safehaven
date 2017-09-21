@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using PCLStorage;
 using SafeHaven.Models;
 using SafeHaven.Services;
 using Xamarin.Forms;
@@ -34,25 +36,25 @@ namespace SafeHaven.Views
 				foreach (DocumentImage img in response.Document.DocumentImages)
 				{
 					StackLayout stack = new StackLayout();
-					var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documentimage/get/" + img.FilePath, string.Empty));
 					Image image = new Image()
 					{
 						Aspect = Aspect.AspectFit,
-						Source = new UriImageSource { Uri = uri }
 					};
-					Label label = new Label { Text = "Page " + img.PageNumber, HorizontalTextAlignment = TextAlignment.Center };
-					stack.Children.Add(label);
-					stack.Children.Add(image);
-					ParentStack.Children.Add(stack);
-					
-					ImageScroller.Content = ParentStack;
-				}
+					IFile file = await FileSystem.Current.GetFileFromPathAsync(img.FilePath);
+                    if (file != null)
+                    {
+                        Stream stream = await file.OpenAsync(PCLStorage.FileAccess.Read);
+                        image.Source = ImageSource.FromStream(() => stream);
+                        stack.Children.Add(image);
+                        ParentStack.Children.Add(stack);
+                    }
+                }
+				ImageScroller.Content = ParentStack;
             }
             if (response.Document.DocumentImages == null)
             {
                 StackLayout stack = new StackLayout();
 				Label label = new Label { Text = "You haven't taken any pictures yet", HorizontalTextAlignment = TextAlignment.Center };
-
 			}
 		}
 
