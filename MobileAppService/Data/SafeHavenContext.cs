@@ -15,14 +15,14 @@ namespace SafeHaven.MobileAppService.Data
         public DbSet<AccessRight> AccessRight { get; set; }
         public DbSet<Document> Document { get; set; }
         public DbSet<DocumentType> DocumentType { get; set; }
-        public DbSet<Image> Image { get; set; }
+        public DbSet<DocumentImage> DocumentImage { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Document>()
                 .Property(b => b.DateCreated)
                 .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
 
-            modelBuilder.Entity<Image>()
+            modelBuilder.Entity<DocumentImage>()
                 .Property(b => b.DateCreated)
                 .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S')");
 

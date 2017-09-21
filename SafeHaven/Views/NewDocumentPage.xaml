@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
-    Padding="0, 20, 0, 0"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="SafeHaven.Views.NewDocumentPage">
-	<StackLayout Padding="20, 0, 20, 0" Spacing="5">
-        <Label Text="New Document" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="Large" BackgroundColor="Maroon" TextColor="White" />
-        <Label Text="Name" HorizontalTextAlignment="Center" />
-        <Entry Placeholder="E.g. Auto insurance" HorizontalTextAlignment="Center" Text="{Binding Title}" />
-        <Label Text="Physical Location" HorizontalTextAlignment="Center" />
-        <Entry Placeholder="E.g. Office filing cabinet" HorizontalTextAlignment="Center" Text="{Binding PhysicalLocation}" />
-        <Label Text="Type of Document" HorizontalTextAlignment="Center" />
-        <Picker x:Name="documentTypes" Title="Document Type" SelectedIndexChanged="Handle_SelectedIndexChanged" HorizontalOptions="CenterAndExpand" />
-        <Label Text="Notes" HorizontalTextAlignment="Center" />
+	<StackLayout Padding="20, 40, 20, 40" Spacing="5">
+        <StackLayout Padding="0, 10, 0, 10" BackgroundColor="{StaticResource PrimaryDark}">
+            <Label Text="New Document" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="Large" TextColor="White" />
+        </StackLayout>
+        <Label Text="Name" />
+        <Entry Placeholder="E.g. Auto insurance" Text="{Binding Title}" />
+        <Label Text="Physical Location"  />
+        <Entry Placeholder="E.g. Office filing cabinet" Text="{Binding PhysicalLocation}" />
+        <Label Text="Type of Document"  />
+        <Picker x:Name="documentTypes" Title="Document Type" SelectedIndexChanged="Handle_SelectedIndexChanged" />
+        <Label Text="Notes" />
         <Editor VerticalOptions="FillAndExpand" BackgroundColor="#f7f4f4" Text="{Binding Notes}" />
-        <StackLayout Orientation="Horizontal">
-            <Button Text="Cancel" BackgroundColor="Maroon" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Cancel" />
-            <Button Text="Save" BackgroundColor="Maroon" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Save" />
+        <StackLayout Orientation="Horizontal" Padding="0, 10, 0, 0">
+            <Button Text="Cancel" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Cancel" />
+            <Button Text="Save" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Save" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

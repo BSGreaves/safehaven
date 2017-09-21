@@ -31,7 +31,6 @@ namespace SafeHaven.Views
 		public DocumentListPage()
         {
             InitializeComponent();
-            SetDocumentsList();
         }
 
         public async void SetDocumentsList()
@@ -52,6 +51,5 @@ namespace SafeHaven.Views
         {
             SetDocumentsList();
         }
-
     }
 }

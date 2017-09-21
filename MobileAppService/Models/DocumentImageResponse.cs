@@ -1,9 +1,9 @@
 ﻿using System;
 namespace SafeHaven.MobileAppService.Models
 {
-    public class ImageResponse : JsonResponse
+    public class DocumentImageResponse : JsonResponse
     {
-        public ImageResponse()
+        public DocumentImageResponse()
         {
         }
     }

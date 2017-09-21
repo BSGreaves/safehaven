@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SafeHaven.MobileAppService.Models
 {
-    public class Image
+    public class DocumentImage
     {
         [Key]
-        public int ImageID { get; set; }
+        public int DocumentImageID { get; set; }
         [Required]
         public DateTime DateCreated { get; set; }
         [Required]

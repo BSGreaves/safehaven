@@ -39,6 +39,10 @@ namespace SafeHaven.Controllers
 				response.Message = "No items found.";
 				return response;
 			}
+            foreach (AccessRight ar in accessrights)
+            {
+                ar.Accessor.Password = null;
+            }
             response.AccessRights = accessrights;
             response.Success = true;
             response.Message = "Items found.";
@@ -71,7 +75,7 @@ namespace SafeHaven.Controllers
 
         // POST
         [HttpPost]
-        public async Task<JsonResponse> Post([FromBody] AccessRight accessright)
+        public async Task<JsonResponse> Post([FromBody] NewAccessRight checkaccessright)
         {
             JsonResponse response = new JsonResponse();
 			if (!ModelState.IsValid)
@@ -80,6 +84,18 @@ namespace SafeHaven.Controllers
 				response.Message = "Bad Request.";
 				return response;
 			}
+            var checkuser = await _context.User.SingleOrDefaultAsync(x => x.Email == checkaccessright.AccessorEmail);
+            if (checkuser == null)
+            {
+				response.Success = false;
+				response.Message = "That email is not registered. Ask them to sign up and try again.";
+				return response;
+            }
+            AccessRight accessright = new AccessRight
+            {
+                GrantorID = checkaccessright.GrantorUserID,
+                AccessorID = checkuser.UserID
+            };
             _context.AccessRight.Add(accessright);
             try
             {

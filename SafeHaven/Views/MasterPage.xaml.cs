@@ -7,11 +7,15 @@ namespace SafeHaven.Views
 {
     public partial class MasterPage : MasterDetailPage
     {
+        private MasterPage _ThisPage { get; set; }
+
 		public MasterPage()
 		{
 			InitializeComponent();
+            _ThisPage = this;
 			navBarPage.NavBarList.ItemSelected += OnItemSelected;
-
+			navBarPage.BackgroundColor = Color.FromHex("#400000");
+			navBarPage.NavBarList.BackgroundColor = Color.FromHex("#400000");
 		}
 
 		void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SafeHaven.MobileAppService.Migrations
 {
-    public partial class Initial : Migration
+    public partial class @base : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -97,10 +97,10 @@ namespace SafeHaven.MobileAppService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Image",
+                name: "DocumentImage",
                 columns: table => new
                 {
-                    ImageID = table.Column<int>(nullable: false)
+                    DocumentImageID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     DateCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "strftime('%Y-%m-%d %H:%M:%S')"),
                     DocumentID = table.Column<int>(nullable: false),
@@ -109,9 +109,9 @@ namespace SafeHaven.MobileAppService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Image", x => x.ImageID);
+                    table.PrimaryKey("PK_DocumentImage", x => x.DocumentImageID);
                     table.ForeignKey(
-                        name: "FK_Image_Document_DocumentID",
+                        name: "FK_DocumentImage_Document_DocumentID",
                         column: x => x.DocumentID,
                         principalTable: "Document",
                         principalColumn: "DocumentID",
@@ -139,8 +139,8 @@ namespace SafeHaven.MobileAppService.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_DocumentID",
-                table: "Image",
+                name: "IX_DocumentImage_DocumentID",
+                table: "DocumentImage",
                 column: "DocumentID");
         }
 
@@ -150,7 +150,7 @@ namespace SafeHaven.MobileAppService.Migrations
                 name: "AccessRight");
 
             migrationBuilder.DropTable(
-                name: "Image");
+                name: "DocumentImage");
 
             migrationBuilder.DropTable(
                 name: "Document");

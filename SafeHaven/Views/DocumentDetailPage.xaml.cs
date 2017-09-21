@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SafeHaven.Models;
+using SafeHaven.Services;
 using Xamarin.Forms;
 
 namespace SafeHaven.Views
@@ -10,24 +11,59 @@ namespace SafeHaven.Views
 
 		private Document _document { get; set; }
 
+        private Keys _keys;
+
         public DocumentDetailPage(Document document)
         {
-            InitializeComponent();
-            BindingContext = document ?? throw new ArgumentNullException();
-        }
+			_keys = new Keys();
+			InitializeComponent();
+            _document = document;
+		}
 
-		//public async void SetDocument()
-		//{
-		//	var response = await App.APIService.GetSingleDocument();
-		//	if (response.Success)
-		//	{
-		//		Documents = response.Documents;
-		//		DocumentList.ItemsSource = Documents;
-		//	}
-		//	else
-		//	{
-		//		await DisplayAlert("Error", response.Message, "Okay");
-		//	}
-		//}
+		public async void SetDocument(int docid)
+		{
+			SingleDocumentResponse response = await App.APIService.GetSingleDocument(docid);
+            if (response.Document == null)
+            {
+                await DisplayAlert("Error", response.Message, "Okay");
+            }
+            BindingContext = response.Document;
+			StackLayout ParentStack = new StackLayout();
+            if (response.Document.DocumentImages != null)
+            {
+				foreach (DocumentImage img in response.Document.DocumentImages)
+				{
+					StackLayout stack = new StackLayout();
+					var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/documentimage/get/" + img.FilePath, string.Empty));
+					Image image = new Image()
+					{
+						Aspect = Aspect.AspectFit,
+						Source = new UriImageSource { Uri = uri }
+					};
+					Label label = new Label { Text = "Page " + img.PageNumber, HorizontalTextAlignment = TextAlignment.Center };
+					stack.Children.Add(label);
+					stack.Children.Add(image);
+					ParentStack.Children.Add(stack);
+					
+					ImageScroller.Content = ParentStack;
+				}
+            }
+            if (response.Document.DocumentImages == null)
+            {
+                StackLayout stack = new StackLayout();
+				Label label = new Label { Text = "You haven't taken any pictures yet", HorizontalTextAlignment = TextAlignment.Center };
+
+			}
+		}
+
+		protected override void OnAppearing()
+		{
+			SetDocument(_document.DocumentID);
+		}
+
+		async void NewImage(object sender, System.EventArgs e)
+		{
+			await Navigation.PushModalAsync(new NewImagePage(_document));
+		}
 	}
 }

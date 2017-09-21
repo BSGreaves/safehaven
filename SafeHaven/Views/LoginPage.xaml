@@ -3,28 +3,28 @@
     <ContentPage Title="Login" Icon="login.png">
         <StackLayout Spacing="20" Padding="20"
                  VerticalOptions="Center">
-            <Label Text="SafeHaven" HorizontalTextAlignment="Center"
+            <Label Text="SafeHaven" FontFamily="Futura-CondensedExtraBold" HorizontalTextAlignment="Center"
                    FontSize="26" TextColor="#84000f" />
             <Label Text="Email" HorizontalTextAlignment="Center" />
-            <Entry x:Name="userLogin"/>
+            <Entry x:Name="emailLogin" Keyboard="Email"/>
             <Label Text="Password" HorizontalTextAlignment="Center" />
             <Entry x:Name="passLogin"
                    IsPassword="True" />
-            <Button Text="Login" TextColor="White"
+            <Button Text="Login" TextColor="White" Clicked="Login"
                     BackgroundColor="#84000f" />
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Register" Icon="register.png">
         <StackLayout Spacing="20" Padding="20"
                  VerticalOptions="Center">
-            <Label Text="SafeHaven" HorizontalTextAlignment="Center"
+            <Label Text="SafeHaven" FontFamily="Futura-CondensedExtraBold" HorizontalTextAlignment="Center"
                    FontSize="26" TextColor="#84000f" />
             <Label Text="Email" HorizontalTextAlignment="Center" />
-            <Entry x:Name="userRegister"/>
+            <Entry x:Name="emailRegister" Keyboard="Email" />
             <Label Text="Password" HorizontalTextAlignment="Center" />
             <Entry x:Name="passRegister"
                    IsPassword="True" />
-            <Button Text="Register" TextColor="White"
+            <Button Text="Register" TextColor="White" Clicked="Register"
                     BackgroundColor="#84000f" />
         </StackLayout>
     </ContentPage>

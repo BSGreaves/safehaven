@@ -3,7 +3,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="new.png" Text="New" Activated="NewDocument" />
     </ContentPage.ToolbarItems>
-    <StackLayout>
+    <StackLayout Padding="5, 0, 5, 10">
         <!--<SearchBar Placeholder="Search"  TextChanged="Handle_TextChanged" />-->
         <ListView x:Name="DocumentList" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="Handle_ItemSelected" >
             <ListView.ItemTemplate> 

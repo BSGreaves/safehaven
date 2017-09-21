@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.NewAccessRightPage">
+	<StackLayout Padding="20, 40, 20, 40" Spacing="5" VerticalOptions="Center" >
+        <StackLayout Padding="0, 10, 0, 10" BackgroundColor="{StaticResource PrimaryDark}">
+            <Label Text="Give Access Rights" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="Large" TextColor="White" />
+        </StackLayout>
+        <Label Text="Enter the email of a registered user" />
+        <Entry Placeholder="johnsmith@yahoo.com" Text="{Binding Email}" Keyboard="Email" />
+        <StackLayout Orientation="Horizontal" Padding="0, 10, 0, 0">
+            <Button Text="Cancel" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Cancel" />
+            <Button Text="Save" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Save" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

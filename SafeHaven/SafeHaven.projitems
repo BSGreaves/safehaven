@@ -29,9 +29,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ShareAccessPage.xaml.cs">
-      <DependentUpon>ShareAccessPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewDocumentPage.xaml.cs">
       <DependentUpon>NewDocumentPage.xaml</DependentUpon>
     </Compile>
@@ -45,8 +42,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentTypeResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Image.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\ImageResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DocumentImageResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\JsonResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SingleDocumentResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SingleUserResponse.cs" />
@@ -59,6 +56,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\DocumentDetailPage.xaml.cs">
       <DependentUpon>DocumentDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewImagePage.xaml.cs">
+      <DependentUpon>NewImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ByteFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GrantAccessPage.xaml.cs">
+      <DependentUpon>GrantAccessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GainAccessPage.xaml.cs">
+      <DependentUpon>GainAccessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LogoutPage.xaml.cs">
+      <DependentUpon>LogoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewAccessRightPage.xaml.cs">
+      <DependentUpon>NewAccessRightPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewAccessRight.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
@@ -78,9 +92,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ShareAccessPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewDocumentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -91,6 +102,21 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DocumentDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewImagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GrantAccessPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GainAccessPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LogoutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewAccessRightPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

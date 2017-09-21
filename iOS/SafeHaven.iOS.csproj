@@ -103,6 +103,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Media.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\packages\Xam.Plugin.Media.3.0.1\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -141,6 +147,25 @@
     <BundleResource Include="Resources\photo%403x.png" />
     <BundleResource Include="Resources\photo%402x.png" />
     <BundleResource Include="Resources\photo.png" />
+    <BundleResource Include="Resources\profile%403x.png" />
+    <BundleResource Include="Resources\profile%402x.png" />
+    <BundleResource Include="Resources\profile.png" />
+    <BundleResource Include="Resources\mydocs.png" />
+    <BundleResource Include="Resources\mydocs%402x.png" />
+    <BundleResource Include="Resources\mydocs%403x.png" />
+    <BundleResource Include="Resources\logout%403x.png" />
+    <BundleResource Include="Resources\logout%402x.png" />
+    <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\gainaccess.png" />
+    <BundleResource Include="Resources\gainaccess%402x.png" />
+    <BundleResource Include="Resources\gainaccess%403x.png" />
+    <BundleResource Include="Resources\grantaccess%403x.png" />
+    <BundleResource Include="Resources\grantaccess%402x.png" />
+    <BundleResource Include="Resources\grantaccess.png" />
+    <BundleResource Include="Resources\documentplaceholder.png" />
+    <BundleResource Include="Resources\home%403x.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\home.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

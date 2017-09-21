@@ -62,22 +62,9 @@ namespace SafeHaven.MobileAppService.Migrations
                     b.ToTable("Document");
                 });
 
-            modelBuilder.Entity("SafeHaven.MobileAppService.Models.DocumentType", b =>
+            modelBuilder.Entity("SafeHaven.MobileAppService.Models.DocumentImage", b =>
                 {
-                    b.Property<int>("DocumentTypeID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Title")
-                        .IsRequired();
-
-                    b.HasKey("DocumentTypeID");
-
-                    b.ToTable("DocumentType");
-                });
-
-            modelBuilder.Entity("SafeHaven.MobileAppService.Models.Image", b =>
-                {
-                    b.Property<int>("ImageID")
+                    b.Property<int>("DocumentImageID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateCreated")
@@ -91,11 +78,24 @@ namespace SafeHaven.MobileAppService.Migrations
 
                     b.Property<int>("PageNumber");
 
-                    b.HasKey("ImageID");
+                    b.HasKey("DocumentImageID");
 
                     b.HasIndex("DocumentID");
 
-                    b.ToTable("Image");
+                    b.ToTable("DocumentImage");
+                });
+
+            modelBuilder.Entity("SafeHaven.MobileAppService.Models.DocumentType", b =>
+                {
+                    b.Property<int>("DocumentTypeID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("DocumentTypeID");
+
+                    b.ToTable("DocumentType");
                 });
 
             modelBuilder.Entity("SafeHaven.MobileAppService.Models.User", b =>
@@ -149,7 +149,7 @@ namespace SafeHaven.MobileAppService.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SafeHaven.MobileAppService.Models.Image", b =>
+            modelBuilder.Entity("SafeHaven.MobileAppService.Models.DocumentImage", b =>
                 {
                     b.HasOne("SafeHaven.MobileAppService.Models.Document", "Document")
                         .WithMany("DocumentImages")

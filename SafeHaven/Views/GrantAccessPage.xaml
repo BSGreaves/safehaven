@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage Title="Grant Access" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.GrantAccessPage">
+	<ContentPage.ToolbarItems>
+        <ToolbarItem Icon="new.png" Text="New" Activated="NewAccessRight" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Padding="5, 0, 5, 10">
+        <ListView x:Name="AccessList" HasUnevenRows="True" SeparatorVisibility="None" >
+            <ListView.ItemTemplate> 
+                <DataTemplate>
+                    <TextCell Text="{Binding Accessor.Email}" />                
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

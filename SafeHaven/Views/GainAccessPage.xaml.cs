@@ -5,13 +5,11 @@ using Xamarin.Forms;
 
 namespace SafeHaven.Views
 {
-    public partial class ShareAccessPage : ContentPage
+    public partial class GainAccessPage : ContentPage
     {
-        public ShareAccessPage()
+        public GainAccessPage()
         {
             InitializeComponent();
-            Title = "Share and Access";
-
         }
     }
 }
