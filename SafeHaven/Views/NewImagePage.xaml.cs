@@ -42,8 +42,6 @@ namespace SafeHaven.Views
 
 				_file = file;
 
-                await DisplayAlert("Path", _file.Path, "OK");
-
 				image.Source = ImageSource.FromStream(() =>
 				{
 					var stream = file.GetStream();
