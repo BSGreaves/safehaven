@@ -130,7 +130,7 @@ namespace SafeHaven.Controllers
 
 		// DELETE
 		[HttpDelete("{docid}")]
-		public async Task<JsonResponse> Delete(int docid)
+		public async Task<JsonResponse> Delete([FromRoute] int docid)
 		{
 			JsonResponse response = new JsonResponse();
 			if (!ModelState.IsValid)

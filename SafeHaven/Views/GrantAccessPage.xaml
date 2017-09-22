@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage Title="Grant Access" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.GrantAccessPage">
+<ContentPage Padding="0, 20, 0, 0" Title="Grant Access" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.GrantAccessPage">
 	<ContentPage.ToolbarItems>
         <ToolbarItem Icon="new.png" Text="New" Activated="NewAccessRight" />
     </ContentPage.ToolbarItems>

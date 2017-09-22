@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.HomePage">
+<ContentPage Padding="0, 20, 0, 0" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.HomePage">
     <StackLayout Spacing="20" Padding="20" VerticalOptions="Center">
         <Label Text="Welcome to" FontFamily="Futura-Medium" HorizontalTextAlignment="Center" FontSize="26" TextColor="{StaticResource Primary}" />
         <Label Text="SafeHaven" FontFamily="Futura-Medium" HorizontalTextAlignment="Center" FontSize="26" TextColor="{StaticResource Primary}" />
-        <Label Text="Upload Your Important Documents" HorizontalTextAlignment="Center" />
-        <Label Text="Share access with your loved ones" HorizontalTextAlignment="Center" />
-        <Button Text="Go to My Docs" TextColor="White" Clicked="GoToMyDocs" BackgroundColor="{StaticResource Primary}" />
+        <Label Text="Upload your important documents" HorizontalTextAlignment="Center" FontFamily="Futura-MediumItalic" />
+        <Label Text="Share access with your loved ones" HorizontalTextAlignment="Center" FontFamily="Futura-MediumItalic" />
+        <Button Text="Go to My Docs" TextColor="White" Clicked="GoToMyDocs" BackgroundColor="{StaticResource Primary}" FontSize="Medium" />
         <Button Text="Logout" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Logout" />
     </StackLayout>
 </ContentPage>

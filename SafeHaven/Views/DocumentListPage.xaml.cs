@@ -47,6 +47,20 @@ namespace SafeHaven.Views
 			}
 		}
 
+		async void Delete_Clicked(object sender, System.EventArgs e)
+		{
+			var document = (sender as MenuItem).BindingContext as Document;
+            var response = await App.APIService.DeleteDocument(document.DocumentID);
+            if (response.Success)
+            {
+				SetDocumentsList();
+            }
+			else
+			{
+				await DisplayAlert("Error", response.Message, "Okay");
+			}
+		}
+
         protected override void OnAppearing()
         {
             SetDocumentsList();

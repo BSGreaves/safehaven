@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.GainAccessDocumentListPage">
+<ContentPage Padding="0, 20, 0, 0" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.GainAccessDocumentListPage">
     <StackLayout Padding="5, 0, 5, 10">
         <!--<SearchBar Placeholder="Search"  TextChanged="Handle_TextChanged" />-->
         <ListView x:Name="DocumentList" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="Handle_ItemSelected" >

@@ -85,6 +85,22 @@ namespace SafeHaven.Services
             }
         }
 
+		public async Task<JsonResponse> DeleteDocument(int docid)
+		{
+			var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/document/delete/" + docid, string.Empty));
+			try
+			{
+				HttpResponseMessage response = await _client.DeleteAsync(uri);
+				var JSONstring = await response.Content.ReadAsStringAsync();
+				JsonResponse result = JsonConvert.DeserializeObject<JsonResponse>(JSONstring);
+				return result;
+			}
+			catch
+			{
+				return new JsonResponse { Message = "Our database is down at the moment, please try again later", Success = false };
+			}
+		}
+
         public async Task<SingleUserResponse> Login(User user)
         {
             var uri = new Uri(string.Format(_keys.SafeHavenAPI + "/user/login", string.Empty));

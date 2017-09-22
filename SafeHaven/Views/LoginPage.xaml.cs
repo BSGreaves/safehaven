@@ -12,10 +12,12 @@ namespace SafeHaven.Views
             if (string.IsNullOrEmpty(emailLogin.Text))
             {
 				await DisplayAlert("Oops!", "Please enter your email address", "OK");
+                return;
 			}
 			if (string.IsNullOrEmpty(passLogin.Text))
 			{
 				await DisplayAlert("Oops!", "Please enter your password", "OK");
+                return;
 			}
             User thisuser = new User
             {
@@ -40,10 +42,12 @@ namespace SafeHaven.Views
 				if (string.IsNullOrEmpty(emailRegister.Text))
 				{
 					await DisplayAlert("Oops!", "Please enter your email address", "OK");
+                    return;
 				}
 				if (string.IsNullOrEmpty(passRegister.Text))
 				{
 					await DisplayAlert("Oops!", "Please enter your password", "OK");
+                    return;
 				}
 				User thisuser = new User
 				{
