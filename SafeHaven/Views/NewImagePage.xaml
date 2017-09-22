@@ -9,7 +9,7 @@
         </StackLayout>
         <StackLayout Spacing="10" Padding="10">
             <Button x:Name="takePhoto" Text="Take Photo" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium"/>
-            <Image x:Name="image" VerticalOptions="FillAndExpand" Source="documentplaceholder.png"/>
+            <Image x:Name="image" VerticalOptions="FillAndExpand" Source="documentplaceholder.png" Opacity="0.3" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Padding="10">
             <Button Text="Cancel" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Cancel" />

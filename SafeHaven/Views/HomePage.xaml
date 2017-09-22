@@ -5,7 +5,11 @@
         <Label Text="SafeHaven" FontFamily="Futura-Medium" HorizontalTextAlignment="Center" FontSize="26" TextColor="{StaticResource Primary}" />
         <Label Text="Upload your important documents" HorizontalTextAlignment="Center" FontFamily="Futura-MediumItalic" />
         <Label Text="Share access with your loved ones" HorizontalTextAlignment="Center" FontFamily="Futura-MediumItalic" />
-        <Button Text="Go to My Docs" TextColor="White" Clicked="GoToMyDocs" BackgroundColor="{StaticResource Primary}" FontSize="Medium" />
-        <Button Text="Logout" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Logout" />
+        <StackLayout Padding="60, 0, 60, 0">
+            <Button Text="Go to My Docs" TextColor="White" Clicked="GoToMyDocs" BackgroundColor="{StaticResource Primary}" FontSize="Medium" />
+        </StackLayout>
+        <StackLayout Padding="60, 0, 60, 0">
+            <Button Text="Logout" BackgroundColor="{StaticResource Primary}" TextColor="White" HorizontalOptions="FillAndExpand" FontSize="Medium" Clicked="Logout" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

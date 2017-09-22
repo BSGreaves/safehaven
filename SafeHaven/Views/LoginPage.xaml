@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SafeHaven.Views.LoginPage">
-    <ContentPage Title="Login" Icon="login.png">
-        <StackLayout Spacing="20" Padding="20"
+    <ContentPage BackgroundImage="backgroundgradient.jpg" Title="Login" Icon="login.png">
+        <StackLayout Spacing="20" Padding="80, 20, 80, 20"
                  VerticalOptions="Center">
             <Label Text="SafeHaven" FontFamily="Futura-CondensedExtraBold" HorizontalTextAlignment="Center"
-                   FontSize="26" TextColor="#84000f" />
-            <Label Text="Email" HorizontalTextAlignment="Center" />
+                   FontSize="26" TextColor="{StaticResource Primary}" />
+            <Label Text="Email" HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryDark}" />
             <Entry x:Name="emailLogin" Keyboard="Email"/>
-            <Label Text="Password" HorizontalTextAlignment="Center" />
+            <Label Text="Password" HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryDark}"/>
             <Entry x:Name="passLogin"
                    IsPassword="True" />
-            <Button Text="Login" TextColor="White" Clicked="Login"
-                    BackgroundColor="#84000f" />
+            <Button Text="Login" TextColor="White" Clicked="Login" 
+                    BackgroundColor="{StaticResource Primary}" />
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Register" Icon="register.png">
-        <StackLayout Spacing="20" Padding="20"
+    <ContentPage BackgroundImage="backgroundgradient.jpg" Title="Register" Icon="register.png">
+        <StackLayout Spacing="20" Padding="80, 20, 80, 20"
                  VerticalOptions="Center">
             <Label Text="SafeHaven" FontFamily="Futura-CondensedExtraBold" HorizontalTextAlignment="Center"
-                   FontSize="26" TextColor="#84000f" />
-            <Label Text="Email" HorizontalTextAlignment="Center" />
+                   FontSize="26" TextColor="{StaticResource Primary}" />
+            <Label Text="Email" HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryDark}" />
             <Entry x:Name="emailRegister" Keyboard="Email" />
-            <Label Text="Password" HorizontalTextAlignment="Center" />
+            <Label Text="Password" HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryDark}" />
             <Entry x:Name="passRegister"
                    IsPassword="True" />
             <Button Text="Register" TextColor="White" Clicked="Register"
-                    BackgroundColor="#84000f" />
+                    BackgroundColor="{StaticResource Primary}" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>
