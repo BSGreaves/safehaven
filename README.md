@@ -1,7 +1,9 @@
 SafeHaven
 =========
 
-A Xamarin Forms mobile app to help people take photos of their important documents
+A Xamarin mobile app to help people take photos of their important documents
+
+![SafeHaven Picture](https://user-images.githubusercontent.com/25022285/30993022-732105b6-a472-11e7-984a-0b4fc5620fe7.jpeg)
 
 Project Goals
 -----
